@@ -1,22 +1,22 @@
-function App() {
+import Menu from "./screens/Menu.jsx";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Regles from "./screens/Regles.jsx";
+import NbJoueurs from "./screens/NbJoueurs.jsx";
+import ChoixCamp from "./screens/ChoixCamp.jsx";
 
+const App = () => {
   return (
-      <div style={styles.container}>
-        <p>Modifiez et créer de nouveaux éléments SEULEMENT dans le package src</p>
-        <button style={styles.buttons} onClick={() => alert("cool")}>Compris</button>
-        <button style={styles.buttons} onClick={() => window.close()}>Nique ta mère</button>
-      </div>
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Menu />} />
+            <Route path="/Regles" element={<Regles />} />
+            <Route path="/NbJoueurs" element={<NbJoueurs />} />
+            <Route path="/NbJoueurs/ChoixCamp" element={<ChoixCamp />} />
+          </Routes>
+        </BrowserRouter>
+      </>
   )
-}
-
-const styles = {
-  container: {
-    textAlign: 'center',
-  },
-  buttons: {
-    borderRadius: 5,
-    backgroundColor: 'lightgray',
-  }
 }
 
 export default App
