@@ -1,8 +1,8 @@
 const Regles = () => {
     return (
-        <>
-            <p>Les règles du jeu</p>
-        </>
+        <div className="container regles">
+            <h1 className="title">Comment jouer ?</h1>
+        </div>
     )
 }
 

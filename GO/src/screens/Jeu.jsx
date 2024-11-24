@@ -1,6 +1,8 @@
 const Jeu = () => {
     return (
-        <p>Lancement du jeu...</p>
+        <div className="container jeu">
+            <h1>Lancement du jeu...</h1>
+        </div>
     )
 }
 
