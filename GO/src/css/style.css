@@ -145,7 +145,6 @@ body{
 }
 
 
-
 /* Règles */
 
 .title-outside {
@@ -224,7 +223,57 @@ body{
     padding-bottom:10px;
 }
 
+/* ChoixTaillePlateau */
 
+.container.choixTaillePlateau{
+    margin : 0;
+}
 
+.container.choixTaillePlateau h2{
+    margin : 3em;
+}
+
+.container.choixTaillePlateau p{
+    font-size: 0.5em;
+    font-weight: 500;
+}
+.container.choixTaillePlateau p{
+    font-size: 0.5em;
+    font-weight: 500;
+}
+
+.container.choixTaillePlateau .button {
+    padding: 0.5em 1.75em 0.5em;
+}
+
+.container.choixTaillePlateau .bar-container{
+    margin : 2em 0 2em;
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    width: 50%;
+    transform: translateX(50%);
+    background-color: #1E1E1E;
+    border-radius: 75px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.container.choixTaillePlateau .tailleValeur {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #1E1E1E;
+    border:none;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(225, 225, 225, 0.3);
+}
+
+.container.choixTaillePlateau .tailleValeur.select {
+    transform: scale(2);
+}
+
+.container.choixTaillePlateau .tailleValeur:hover {
+    transform: scale(2.5);
+}
 
 
