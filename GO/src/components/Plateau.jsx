@@ -38,7 +38,7 @@ const Plateau = ({taille}) => {
                                 <text
                                     className="numerotation posColonne"
                                     x="7"
-                                    y={11 + (80 / taille) * index}
+                                    y={10 + (80 / taille) * index}
                                     fontSize="2"
                                     textAnchor="middle"
                                     alignmentBaseline="middle"
