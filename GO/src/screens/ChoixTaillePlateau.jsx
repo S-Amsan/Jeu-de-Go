@@ -20,7 +20,7 @@ const ChoixTaillePlateau = () => {
                     </button>
                 ))}
             </div>
-            <Link className="button" to="Jeu">Confirmer</Link>
+            <Link className="button" to="Jeu" state={{ tailleSelect }}>Confirmer</Link>
         </div>
     );
 };

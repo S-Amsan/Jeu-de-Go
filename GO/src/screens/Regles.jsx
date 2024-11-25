@@ -1,8 +1,8 @@
 const Regles = () => {
     return (
-        <>
+        <div className="container regles">
             <h1 className="title-outside">Comment jouer ?</h1>
-            <div className="container regles">
+            <section className="container commentJouer">
                 <ol>
                     <li>
                         <strong>But du jeu :</strong> Contrôler le plus grand territoire sur le plateau en entourant des
@@ -27,10 +27,10 @@ const Regles = () => {
                         Règles du Go
                     </a>.
                 </p>
-            </div>
+            </section>
 
             <h1 className="title-outside">Présentation Site</h1>
-            <div className="container presenteSite">
+            <section className="container presenteSite">
                 <p className = "premierPdePresentation">
                     Notre site est une interface graphique utilisateur (GUI) moderne pour jouer au Go et interagir
                     facilement avec le jeu. Vous pourrez :
@@ -46,8 +46,8 @@ const Regles = () => {
                     Cette interface intuitive est conçue pour refléter les interactions classiques d'une partie de
                     Go, tout en simplifiant les commandes complexes pour une meilleure expérience utilisateur
                 </p>
-            </div>
-        </>
+            </section>
+        </div>
 
     );
 };

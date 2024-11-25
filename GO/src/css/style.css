@@ -59,7 +59,7 @@ body{
 
 /* Regles */
 
-.container.regles{
+.container.commentJouer{
     margin: 2em 0 0;
 }
 
@@ -146,7 +146,9 @@ body{
 
 
 /* Règles */
-
+.container.regles{
+    margin:1em;
+}
 .title-outside {
     font-size: 2.5rem;
     font-weight: bold;
@@ -156,39 +158,39 @@ body{
     color: #333;
 }
 
-.container.regles {
+.container.commentJouer {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
 
-.container.regles ol {
+.container.commentJouer ol {
     margin-left: 20px;
     color: #444;
     padding-left: 20px;
 }
 
-.container.regles ol li {
+.container.commentJouer ol li {
     margin-bottom: 15px;
     font-size: 1.1rem;
 }
 
-.container.regles p {
+.container.commentJouer p {
     font-size: 1.2rem;
     line-height: 1.6;
     color: #555;
 }
 
-.container.regles a {
+.container.commentJouer a {
     color: #007bff;
     text-decoration: none;
 }
 
-.container.regles a:hover {
+.container.commentJouer a:hover {
     text-decoration: underline;
 }
 
@@ -265,7 +267,7 @@ body{
     background-color: #1E1E1E;
     border:none;
     transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(225, 225, 225, 0.3);
+    box-shadow: 0 4px 6px rgb(248, 248, 248);
 }
 
 .container.choixTaillePlateau .tailleValeur.select {
@@ -276,4 +278,84 @@ body{
     transform: scale(2.5);
 }
 
+
+/* Jeu */
+
+.container.jeu {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 1s ease-in-out;
+}
+
+.container.jeu .title{
+    margin: -2em 0 1em;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.container.jeu .plateau {
+    width: 12em;
+    height: 12em;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1E1E1E;
+}
+
+.container.jeu .quadrillage {
+    width: 11.6em;
+    height: 11.6em;
+    background-color: #E5C8A3;
+    display: block;
+    border: 3px solid #1E1E1E;
+}
+
+
+
+
+
+
+.container.jeu .button{
+    margin: 0;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    font-weight: bold;
+}
+
+.container.jeu .historique{
+    position: absolute;
+    font-size: 0.4em;
+    text-align: left;
+    bottom: 2em;
+    left: 2em;
+}
+
+/* Tour joueur Blanc*/
+.container.jeu.blanc{
+    background: #E1E1E1;
+    color: #1E1E1E;
+}
+.container.jeu.blanc .plateau{
+    background: #1E1E1E;
+}
+
+/* Tour joueur Noir*/
+.container.jeu.noir{
+    background: #1E1E1E;
+    color: #E1E1E1;
+}
+.container.jeu.noir .plateau{
+    background: #E1E1E1;
+}
+.container.jeu.noir .button{
+    color: #1E1E1E;
+    background: #E1E1E1;
+}
 
