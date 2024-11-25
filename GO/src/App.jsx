@@ -20,6 +20,7 @@ const App = () => {
             <Route path="/NbJoueurs/ChoixCamp/ChoixTaillePlateau" element={<ChoixTaillePlateau />} />
             <Route path="/NbJoueurs/ChoixTaillePlateau/Jeu" element={<Jeu />} />
             <Route path="/NbJoueurs/ChoixCamp/ChoixTaillePlateau/Jeu" element={<Jeu />} />
+            <Route path="/fin-jeu/:resultat/:joueur" element={<FinJeu />} />
           </Routes>
         </BrowserRouter>
       </>
