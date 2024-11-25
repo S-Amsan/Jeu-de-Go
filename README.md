@@ -7,7 +7,7 @@
 - Jakubczyk 208
   
 ### Objectif
-Ce projet a pour but de développer une interface graphique (**GUI**) pour le jeu de ***Go***, en **JavaScript**.
+Ce projet a pour but de développer une interface graphique (**GUI**) pour le jeu de ***Go***, en **React**.
 
 --- 
 ### Fonctionnalités implémentées
