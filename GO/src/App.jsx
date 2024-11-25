@@ -5,6 +5,7 @@ import ChoixJoueurs from "./screens/choixJoueurs.jsx";
 import ChoixCamp from "./screens/ChoixCamp.jsx";
 import ChoixTaillePlateau from "./screens/ChoixTaillePlateau.jsx";
 import Jeu from "./screens/Jeu.jsx";
+import FinJeu from './screens/FinJeu.jsx';
 
 const App = () => {
   return (
