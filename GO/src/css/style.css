@@ -28,7 +28,7 @@ body{
     font-size: 1.30em;
     margin: 0.5em 0 1em;
 }
-.button, .boutonRetourMenu{
+.button{
     font-size: 0.50em;
     padding : 0.5em 0 0.5em;
     width: 10em;
@@ -40,19 +40,29 @@ body{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: opacity 0.5s;
 }
-.button:hover, .boutonRetourMenu:hover{
+.button:hover{
     opacity: 0.8;
 }
 
-.boutonRetourMenu{
+.maison-bouton {
     position: absolute;
     top: 5vh;
-    left: 3vw;
-    display:flex;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: -2vh;
+    left: 3.5vw;
+    display: inline-block;
+    text-decoration: none;
 }
+
+.maison-image {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.maison-image:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
 
 
 /* Menu */

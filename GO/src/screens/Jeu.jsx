@@ -13,11 +13,11 @@ const Jeu = () => {
                 <Plateau taille={taille}/>
             </div>
             <div className="historique">
-                <p>Le joueur Blanc à joué A4</p>
-                <p>Le joueur Noir à joué A5</p>
-                <p>Le joueur Blanc à joué A6</p>
-                <p>Le joueur Noir à joué A7</p>
-                <p>Le joueur Blanc à joué A10</p>
+                <p>Le joueur Blanc a joué A4</p>
+                <p>Le joueur Noir a joué A5</p>
+                <p>Le joueur Blanc a joué A6</p>
+                <p>Le joueur Noir a joué A7</p>
+                <p>Le joueur Blanc a joué A10</p>
             </div>
             <Link className="button" to="/">Abandon</Link>
         </div>

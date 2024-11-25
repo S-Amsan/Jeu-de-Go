@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 const ChoixJoueurs = () => {
     return (
         <div className="container choixJoueurs">
-            <Link className="boutonRetourMenu" to="/">Retour Menu</Link>
             <h1 className="title">JEU DE GO</h1>
             <h2 className="question">Combien êtes-vous?</h2>
             <div className="button-container">
