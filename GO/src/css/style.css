@@ -293,32 +293,25 @@ body{
 }
 
 .container.jeu .title{
-    margin: -2em 0 1em;
+    margin: -1em 0 1em;
     font-size: 1.5em;
     font-weight: 600;
 }
 
-.container.jeu .plateau {
-    width: 12em;
-    height: 12em;
+.container.jeu .plateau-container {
+    width: 14em;
+    height: 14em;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1E1E1E;
 }
 
 .container.jeu .quadrillage {
-    width: 11.6em;
-    height: 11.6em;
-    background-color: #E5C8A3;
+    width: 14em;
+    height: 14em;
     display: block;
-    border: 3px solid #1E1E1E;
 }
-
-
-
-
 
 
 .container.jeu .button{
@@ -345,6 +338,13 @@ body{
 .container.jeu.blanc .plateau{
     background: #1E1E1E;
 }
+.container.jeu.blanc .quadrillage .contour{
+    stroke : #1E1E1E;
+}
+.container.jeu.blanc .numerotation{
+    fill: #1E1E1E;
+}
+
 
 /* Tour joueur Noir*/
 .container.jeu.noir{
@@ -358,4 +358,17 @@ body{
     color: #1E1E1E;
     background: #E1E1E1;
 }
+.container.jeu.noir .quadrillage .contour{
+    stroke : #E1E1E1;
+}
+.container.jeu.noir .numerotation{
+    fill: #E1E1E1;
+}
+
+
+
+
+
+
+
 

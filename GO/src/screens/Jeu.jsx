@@ -9,8 +9,8 @@ const Jeu = () => {
     return (
         <div className="container jeu blanc">
                 <h1 className="title">Tour du Joueur Blanc</h1>
-            <div className="plateau">
-                <Plateau taille={taille} />
+            <div className="plateau-container">
+                <Plateau taille={taille}/>
             </div>
             <div className="historique">
                 <p>Le joueur Blanc à joué A4</p>
