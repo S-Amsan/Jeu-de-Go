@@ -1,6 +1,9 @@
+import {Link} from "react-router-dom";
+
 const Regles = () => {
     return (
         <div className="container regles">
+            <Link className="boutonRetourMenu" to="/">Retour Menu</Link>
             <h1 className="title-outside">Comment jouer ?</h1>
             <section className="container commentJouer">
                 <ol>

@@ -7,6 +7,7 @@ const ChoixTaillePlateau = () => {
 
     return (
         <div className="container choixTaillePlateau">
+            <Link className="boutonRetourMenu" to="/">Retour Menu</Link>
             <h2>Définissez la taille du plateau</h2>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <div className="bar-container">
