@@ -4,8 +4,7 @@ const ChoixCamp = () => {
     const navigate = useNavigate();
 
     const handleClick = (camp) => {
-        console.log(`Camp choisi : ${camp}`);
-        navigate("ChoixTaillePlateau");
+        navigate("ChoixTaillePlateau", { state: { couleur: camp } });
     };
 
     return (
@@ -13,11 +12,11 @@ const ChoixCamp = () => {
             <h2>Choisissez votre camp</h2>
             <div className="choix-container">
                 <div className="choix blanc">
-                    <button onClick={() => handleClick("Blanc")}></button>
+                    <button onClick={() => handleClick("blanc")}></button>
                     <p>Blanc</p>
                 </div>
                 <div className="choix noir">
-                    <button onClick={() => handleClick("Noir")}></button>
+                    <button onClick={() => handleClick("noir")}></button>
                     <p>Noir</p>
                 </div>
             </div>

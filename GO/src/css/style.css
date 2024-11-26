@@ -94,6 +94,19 @@ body{
     height: 50rem;
     display: block;
 }
+.pion{
+    opacity: 0;
+
+}
+.pion.pose{
+    opacity: 1;
+}
+.pose.noir {
+    fill: #1E1E1E;
+}
+.pose.blanc {
+    fill: #E1E1E1;
+}
 
 /* Version Blanc */
 .container .quadrillage .contour{
