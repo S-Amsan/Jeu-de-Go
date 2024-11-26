@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import BarreTaille from "../components/BarreTaille.jsx";
+import Plateau from "../components/Plateau.jsx";
 
 const ChoixTaillePlateau = () => {
     const [tailleSelect, setTailleSelect] = useState(19);
@@ -8,11 +9,12 @@ const ChoixTaillePlateau = () => {
     return (
         <div className="container choixTaillePlateau">
             <h2>Définissez la taille du plateau</h2>
+            <Plateau taille={tailleSelect}/>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <div className="bar-container">
-                <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect} />
+                <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect}/>
             </div>
-            <Link className="button" to="Jeu" state={{ tailleSelect }}>Confirmer</Link>
+            <Link className="button" to="Jeu" state={{tailleSelect}}>Confirmer</Link>
         </div>
     );
 };

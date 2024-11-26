@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-
-
 /* Css commun à toutes les pages : */
-
 *{
     margin: 0;
     padding: 0;
@@ -43,7 +40,7 @@ body{
 .button:hover{
     opacity: 0.8;
 }
-
+/* Bouton Maison*/
 .maison-bouton {
     position: absolute;
     top: 5vh;
@@ -51,22 +48,48 @@ body{
     display: inline-block;
     text-decoration: none;
 }
-
 .maison-image {
     width: 50px;
     height: 50px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
 .maison-image:hover {
     transform: scale(1.2);
     opacity: 0.8;
 }
 
+/*Plateau*/
+.plateau-container {
+    width: 14em;
+    height: 14em;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quadrillage {
+    width: 14em;
+    height: 14em;
+    display: block;
+}
 
+/* Version Blanc */
+.container .quadrillage .contour{
+    stroke : #1E1E1E;
+}
+.container .numerotation{
+    fill: #1E1E1E;
+}
+
+/* Version Noir */
+.container.noir .quadrillage .contour{
+    stroke : #E1E1E1;
+}
+.container.noir .numerotation{
+    fill: #E1E1E1;
+}
 
 /* Menu */
-
 .container.menu{
     display: flex;
     flex-direction: column;
@@ -76,16 +99,12 @@ body{
     margin: 0 0 1em;
 }
 
-
 /* Regles */
-
 .container.commentJouer{
     margin: 2em 0 0;
 }
 
-
 /* ChoixJoueurs */
-
 .container.choixJoueurs .button-container{
     display: flex;
     flex-direction: row;
@@ -95,8 +114,6 @@ body{
     align-items: center;
     justify-content: center;
 }
-
-/* ChoixCamp */
 
 /* ChoixCamp */
 .container.choixCamp h2 {
@@ -141,11 +158,10 @@ body{
 .container.choixCamp .choix.noir {
     background-color: #E1E1E1;
 }
-
 .container.choixCamp .choix-container button {
     margin-top: 10em;
-    width: 8em;
-    height: 8em;
+    width: 8vw;
+    height: 8vh;
     border: none;
     border-radius: 50%;
 }
@@ -159,11 +175,9 @@ body{
 .container.choixCamp .choix.blanc button{
     background-color: #E1E1E1;
 }
-
 .container.choixCamp .choix.noir button {
     background-color: #1E1E1E;
 }
-
 
 /* Règles */
 .container.regles{
@@ -177,7 +191,6 @@ body{
     padding-top:20px;
     color: #333;
 }
-
 .container.commentJouer {
     max-width: 800px;
     margin: 0 auto;
@@ -187,33 +200,27 @@ body{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
-
 .container.commentJouer ol {
     margin-left: 20px;
     color: #444;
     padding-left: 20px;
 }
-
 .container.commentJouer ol li {
     margin-bottom: 15px;
     font-size: 1.1rem;
 }
-
 .container.commentJouer p {
     font-size: 1.2rem;
     line-height: 1.6;
     color: #555;
 }
-
 .container.commentJouer a {
     color: #007bff;
     text-decoration: none;
 }
-
 .container.commentJouer a:hover {
     text-decoration: underline;
 }
-
 .container.presenteSite {
     max-width: 800px;
     margin: 0 auto;
@@ -224,62 +231,56 @@ body{
     text-align: left;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 .container.presenteSite ul {
     margin-left: 20px;
     padding-left: 20px;
 }
-
 .container.presenteSite ul li {
     margin-bottom: 10px;
     font-size: 1.1rem;
 }
-
 .container.presenteSite p {
     font-size: 1.2rem;
     line-height: 1.6;
     padding-top:8px;
 }
-
 .premierPdePresentation{
     padding-bottom:10px;
 }
 
 /* ChoixTaillePlateau */
-
 .container.choixTaillePlateau{
     margin : 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
-
 .container.choixTaillePlateau h2{
-    margin : 3em;
-}
-
-.container.choixTaillePlateau p{
-    font-size: 0.5em;
-    font-weight: 500;
+    margin : 2em 0 1em;
 }
 .container.choixTaillePlateau p{
     font-size: 0.5em;
     font-weight: 500;
 }
-
+.container.choixTaillePlateau p{
+    font-size: 0.5em;
+    font-weight: 500;
+}
 .container.choixTaillePlateau .button {
     padding: 0.5em 1.75em 0.5em;
 }
-
 .container.choixTaillePlateau .bar-container{
     margin : 2em 0 2em;
     display: flex;
     justify-content: space-between;
     gap: 1em;
     width: 50%;
-    transform: translateX(50%);
     background-color: #1E1E1E;
     border-radius: 75px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-
 .container.choixTaillePlateau .tailleValeur {
     width: 1em;
     height: 1em;
@@ -289,18 +290,21 @@ body{
     transition: 0.3s;
     box-shadow: 0 4px 6px rgb(30, 30, 30);
 }
-
 .container.choixTaillePlateau .tailleValeur.select {
     transform: scale(2);
 }
-
 .container.choixTaillePlateau .tailleValeur:hover {
     transform: scale(2.5);
 }
-
-
+.container.choixTaillePlateau .plateau-container {
+    width: 7em;
+    height: 7em;
+}
+.container.choixTaillePlateau .quadrillage {
+    width: 7em;
+    height: 7em;
+}
 /* Jeu */
-
 .container.jeu {
     margin: 0;
     width: 100vw;
@@ -311,29 +315,11 @@ body{
     align-items: center;
     transition: background 1s ease-in-out;
 }
-
 .container.jeu .title{
     margin: -1em 0 1em;
     font-size: 1.5em;
     font-weight: 600;
 }
-
-.container.jeu .plateau-container {
-    width: 14em;
-    height: 14em;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container.jeu .quadrillage {
-    width: 14em;
-    height: 14em;
-    display: block;
-}
-
-
 .container.jeu .button{
     margin: 0;
     position: absolute;
@@ -341,7 +327,6 @@ body{
     right: 2em;
     font-weight: bold;
 }
-
 .container.jeu .historique{
     position: absolute;
     font-size: 0.4em;
@@ -355,40 +340,13 @@ body{
     background: #E1E1E1;
     color: #1E1E1E;
 }
-.container.jeu.blanc .plateau{
-    background: #1E1E1E;
-}
-.container.jeu.blanc .quadrillage .contour{
-    stroke : #1E1E1E;
-}
-.container.jeu.blanc .numerotation{
-    fill: #1E1E1E;
-}
-
 
 /* Tour joueur Noir*/
 .container.jeu.noir{
     background: #1E1E1E;
     color: #E1E1E1;
 }
-.container.jeu.noir .plateau{
-    background: #E1E1E1;
-}
 .container.jeu.noir .button{
     color: #1E1E1E;
     background: #E1E1E1;
 }
-.container.jeu.noir .quadrillage .contour{
-    stroke : #E1E1E1;
-}
-.container.jeu.noir .numerotation{
-    fill: #E1E1E1;
-}
-
-
-
-
-
-
-
-
