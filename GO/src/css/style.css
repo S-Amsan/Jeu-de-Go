@@ -18,10 +18,28 @@ body{
 }
 .container{
     margin: 25vh 0 0;
+    width: 100%;
+    height: 100%;
 }
 .title{
     font-style: italic;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Version Blanche*/
+.container.blanc{
+    background: #E1E1E1;
+    color: #1E1E1E;
+}
+
+/* Version Noire*/
+.container.noir{
+    background: #1E1E1E;
+    color: #E1E1E1;
+}
+.container.noir .button{
+    color: #1E1E1E;
+    background: #E1E1E1;
 }
 .container h2{
     font-weight: lighter;
@@ -43,7 +61,8 @@ body{
 .button:hover{
     opacity: 0.8;
 }
-/* Bouton Maison*/
+
+/* Bouton Maison (components)*/
 .maison-bouton {
     position: absolute;
     top: 3rem;
@@ -61,7 +80,7 @@ body{
     opacity: 0.8;
 }
 
-/*Plateau*/
+/*Plateau (components)*/
 .plateau-container {
     width: 50rem;
     height: 50rem;
@@ -91,6 +110,41 @@ body{
 .container.noir .numerotation{
     fill: #E1E1E1;
 }
+/* Barre de selection de taille (components) */
+.container .bar-container{
+    margin : 5vh 0 5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    background-color: #1E1E1E;
+    border-radius: 75px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.container .tailleValeur {
+    width: 0.75vw;
+    height: 0.75vw;
+    border-radius: 50%;
+    background-color: #E1E1E1;
+    border:none;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgb(30, 30, 30);
+}
+.container .tailleValeur.select {
+    transform: scale(2);
+}
+.container .tailleValeur:hover {
+    transform: scale(2.5);
+}
+
+/*Version Noire*/
+.container.noir .bar-container{
+    background-color: #E1E1E1;
+
+}
+.container.noir .tailleValeur {
+    background-color: #1E1E1E;
+    box-shadow: 0 4px 6px rgb(225, 225, 225);
+}
 
 /* Menu */
 .container.menu{
@@ -100,6 +154,65 @@ body{
 }
 .container.menu .title{
     margin: 0 0 6rem;
+}
+
+/* Règles */
+.container.regles{
+    margin:0;
+}
+.title-outside {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2vh;
+    padding-top:10vh;
+    color: #333;
+}
+.container.regles section{
+    max-width: 70vw;
+    margin: 0 auto;
+    padding: 1.5vw;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+.container.regles .commentJouer {
+    background-color: #f9f9f9;
+}
+.container.regles .presenteSite {
+    background-color: #2c2c2c;
+    color: #d6d6d6;
+}
+.container.regles .commentJouer ol {
+    color: #444;
+}
+.container.regles li {
+    margin-bottom: 1vh;
+    font-size: 1.1rem;
+}
+.container.regles p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+.container.regles .commentJouer p {
+    color: #555;
+}
+.container.regles .presenteSite p {
+    padding-top:1vh;
+}
+.container.regles a{
+    color: #007bff;
+    text-decoration: none;
+}
+.container.regles a:hover {
+    text-decoration: underline;
+}
+.container.regles .presenteSite ul {
+    margin-left: 1vw;
+    padding-left: 1vw;
+}
+.premierPdePresentation{
+    padding-bottom:1vh;
 }
 
 /* ChoixJoueurs */
@@ -175,78 +288,11 @@ body{
     background-color: #1E1E1E;
 }
 
-/* Règles */
-.container.regles{
-    margin:5vh;
-}
-.title-outside {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2vh;
-    padding-top:2vh;
-    color: #333;
-}
-.container.commentJouer {
-    max-width: 70vw;
-    margin: 0 auto;
-    padding: 1.5vw;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-.container.commentJouer ol {
-    margin-left: 1vw;
-    color: #444;
-    padding-left: 1vw;
-}
-.container.commentJouer ol li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-.container.commentJouer p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-}
-.container.commentJouer a {
-    color: #007bff;
-    text-decoration: none;
-}
-.container.commentJouer a:hover {
-    text-decoration: underline;
-}
-.container.presenteSite {
-    max-width: 70vw;
-    margin: 0 auto;
-    padding: 1.5vw;
-    background-color: #2c2c2c;
-    border-radius: 10px;
-    color: #d6d6d6;
-    text-align: left;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-.container.presenteSite ul {
-    margin-left: 1vw;
-    padding-left: 1vw;
-}
-.container.presenteSite ul li {
-    margin-bottom: 1vh;
-    font-size: 1.1rem;
-}
-.container.presenteSite p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    padding-top:1vh;
-}
-.premierPdePresentation{
-    padding-bottom:1vh;
-}
-
 /* ChoixTaillePlateau */
 .container.choixTaillePlateau{
     margin : 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -261,31 +307,6 @@ body{
     font-size: 1.5rem;
     font-weight: 500;
 }
-
-.container.choixTaillePlateau .bar-container{
-    margin : 5vh 0 5vh;
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    background-color: #1E1E1E;
-    border-radius: 75px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-.container.choixTaillePlateau .tailleValeur {
-    width: 0.75vw;
-    height: 0.75vw;
-    border-radius: 50%;
-    background-color: #E1E1E1;
-    border:none;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgb(30, 30, 30);
-}
-.container.choixTaillePlateau .tailleValeur.select {
-    transform: scale(2);
-}
-.container.choixTaillePlateau .tailleValeur:hover {
-    transform: scale(2.5);
-}
 .container.choixTaillePlateau .plateau-container {
     width: 25rem;
     height: 25rem;
@@ -294,6 +315,7 @@ body{
     width: 25rem;
     height: 25rem;
 }
+
 /* Jeu */
 .container.jeu {
     margin: 0;
@@ -325,22 +347,6 @@ body{
     left: 3rem;
 }
 
-/* Tour joueur Blanc*/
-.container.jeu.blanc{
-    background: #E1E1E1;
-    color: #1E1E1E;
-}
-
-/* Tour joueur Noir*/
-.container.jeu.noir{
-    background: #1E1E1E;
-    color: #E1E1E1;
-}
-.container.jeu.noir .button{
-    color: #1E1E1E;
-    background: #E1E1E1;
-}
-
 
 
 
@@ -356,7 +362,6 @@ body{
         font-size: 2rem;
     }
 }
-
 /* Téléphone */
 @media (min-width: 481px) and (max-width: 767px) {
     html{
@@ -378,7 +383,6 @@ body{
         font-size: 12px;
     }
 }
-
 /* === Ordinateurs (petits écrans) === */
 @media screen and (min-width: 1280px) and (max-width: 1440px) {
     html{
@@ -391,4 +395,3 @@ body{
         font-size: 15px;
     }
 }
-

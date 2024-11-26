@@ -1,7 +1,7 @@
 const Plateau = ({taille}) => {
+        taille += 1;
         return (
             <div className="plateau-container">
-
                     <svg className="quadrillage" viewBox={`0 0 100 100`} preserveAspectRatio="none">
                             {/* Fond du plateau */}
                             <rect x="10" y="10" width="80" height="80" fill="#E5C8A3"/>

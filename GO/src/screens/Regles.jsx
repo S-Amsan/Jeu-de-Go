@@ -1,8 +1,11 @@
+import BoutonMaison from "../components/BoutonMenu.jsx";
+
 const Regles = () => {
     return (
         <div className="container regles">
+            <BoutonMaison couleur={"blanc"}/>
             <h1 className="title-outside">Comment jouer ?</h1>
-            <section className="container commentJouer">
+            <section className="commentJouer">
                 <ol>
                     <li>
                         <strong>But du jeu :</strong> Contrôler le plus grand territoire sur le plateau en entourant des
@@ -30,7 +33,7 @@ const Regles = () => {
             </section>
 
             <h1 className="title-outside">Présentation Site</h1>
-            <section className="container presenteSite">
+            <section className="presenteSite">
                 <p className = "premierPdePresentation">
                     Notre site est une interface graphique utilisateur (GUI) moderne pour jouer au Go et interagir
                     facilement avec le jeu. Vous pourrez :

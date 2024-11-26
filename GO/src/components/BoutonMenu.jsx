@@ -1,23 +1,15 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import maisonBlanche from '../images/maison blanche.png';
 import maisonNoire from '../images/maison noire.png';
-import '../css/style.css';
 
-const BoutonMaison = () => {
-    const location = useLocation();
-
+const BoutonMaison = ({couleur}) => {
     const getImage = () => {
-        switch (location.pathname) {
-            case '/NbJoueurs/ChoixCamp/ChoixTaillePlateau':
-                return maisonBlanche;
-            default:
-                return maisonNoire;
+        if(couleur === "blanc"){
+            return maisonNoire;
         }
+        return maisonBlanche;
     };
-
     const image = getImage();
-
     return (
         <Link to="/" className="maison-bouton">
             <img
