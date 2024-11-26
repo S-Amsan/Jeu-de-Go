@@ -17,7 +17,7 @@ body{
     font-size: 3em;
 }
 .container{
-    margin: 7em 0 0;
+    margin: 25vh 0 0;
 }
 .title{
     font-style: italic;
@@ -284,10 +284,10 @@ body{
     width: 1em;
     height: 1em;
     border-radius: 50%;
-    background-color: #1E1E1E;
+    background-color: #E1E1E1;
     border:none;
     transition: 0.3s;
-    box-shadow: 0 4px 6px rgb(248, 248, 248);
+    box-shadow: 0 4px 6px rgb(30, 30, 30);
 }
 
 .container.choixTaillePlateau .tailleValeur.select {
