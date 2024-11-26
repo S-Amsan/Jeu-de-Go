@@ -6,12 +6,15 @@
     padding: 0;
 
 }
+html{
+    font-size: 16px;
+}
 body{
     background: #E1E1E1;
     color: #1E1E1E;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    font-size: 3em;
+    font-size: 3rem;
 }
 .container{
     margin: 25vh 0 0;
@@ -22,14 +25,14 @@ body{
 }
 .container h2{
     font-weight: lighter;
-    font-size: 1.30em;
-    margin: 0.5em 0 1em;
+    font-size: 2rem;
+    margin: 10vh 0 1vh;
 }
 .button{
-    font-size: 0.50em;
-    padding : 0.5em 0 0.5em;
-    width: 10em;
-    margin: 0 0 1.25em;
+    font-size: 1.5rem;
+    padding : 0.75rem 0 0.75rem;
+    margin: 0 0 3vh;
+    width: 15rem;
     text-decoration: none;
     color: #E1E1E1;
     background: #1E1E1E;
@@ -43,14 +46,14 @@ body{
 /* Bouton Maison*/
 .maison-bouton {
     position: absolute;
-    top: 5vh;
-    left: 3.5vw;
+    top: 3rem;
+    left: 3rem;
     display: inline-block;
     text-decoration: none;
 }
 .maison-image {
-    width: 50px;
-    height: 50px;
+    width: 3rem;
+    height: 3rem;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .maison-image:hover {
@@ -60,16 +63,16 @@ body{
 
 /*Plateau*/
 .plateau-container {
-    width: 14em;
-    height: 14em;
+    width: 50rem;
+    height: 50rem;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .quadrillage {
-    width: 14em;
-    height: 14em;
+    width: 50rem;
+    height: 50rem;
     display: block;
 }
 
@@ -96,20 +99,15 @@ body{
     align-items: center;
 }
 .container.menu .title{
-    margin: 0 0 1em;
-}
-
-/* Regles */
-.container.commentJouer{
-    margin: 2em 0 0;
+    margin: 0 0 6rem;
 }
 
 /* ChoixJoueurs */
 .container.choixJoueurs .button-container{
     display: flex;
     flex-direction: row;
-    gap: 1em;
-    margin: 1em 0 0;
+    gap: 2vw;
+    margin: 3rem 0 0;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -118,13 +116,11 @@ body{
 /* ChoixCamp */
 .container.choixCamp h2 {
     position: absolute;
-    top: 2em;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: 1.5em;
+    font-size: 5rem;
     font-weight: 600;
-    margin: 0;
     background: linear-gradient(to right, #e1e1e1 50%, #1e1e1e 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -141,8 +137,8 @@ body{
     height: 100%;
 }
 .container.choixCamp .choix-container p {
-    margin-top: 1em;
-    font-size: 1.2em;
+    margin-top: 4rem;
+    font-size: 3.8rem;
 }
 .container.choixCamp .choix {
     flex: 1;
@@ -159,9 +155,9 @@ body{
     background-color: #E1E1E1;
 }
 .container.choixCamp .choix-container button {
-    margin-top: 10em;
+    margin-top: 11vh;
     width: 8vw;
-    height: 8vh;
+    height: 8vw;
     border: none;
     border-radius: 50%;
 }
@@ -181,29 +177,29 @@ body{
 
 /* Règles */
 .container.regles{
-    margin:1em;
+    margin:5vh;
 }
 .title-outside {
     font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
-    padding-top:20px;
+    margin-bottom: 2vh;
+    padding-top:2vh;
     color: #333;
 }
 .container.commentJouer {
-    max-width: 800px;
+    max-width: 70vw;
     margin: 0 auto;
-    padding: 20px;
+    padding: 1.5vw;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
 .container.commentJouer ol {
-    margin-left: 20px;
+    margin-left: 1vw;
     color: #444;
-    padding-left: 20px;
+    padding-left: 1vw;
 }
 .container.commentJouer ol li {
     margin-bottom: 15px;
@@ -222,9 +218,9 @@ body{
     text-decoration: underline;
 }
 .container.presenteSite {
-    max-width: 800px;
+    max-width: 70vw;
     margin: 0 auto;
-    padding: 20px;
+    padding: 1.5vw;
     background-color: #2c2c2c;
     border-radius: 10px;
     color: #d6d6d6;
@@ -232,20 +228,20 @@ body{
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .container.presenteSite ul {
-    margin-left: 20px;
-    padding-left: 20px;
+    margin-left: 1vw;
+    padding-left: 1vw;
 }
 .container.presenteSite ul li {
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
     font-size: 1.1rem;
 }
 .container.presenteSite p {
     font-size: 1.2rem;
     line-height: 1.6;
-    padding-top:8px;
+    padding-top:1vh;
 }
 .premierPdePresentation{
-    padding-bottom:10px;
+    padding-bottom:1vh;
 }
 
 /* ChoixTaillePlateau */
@@ -258,32 +254,26 @@ body{
     align-items: center;
 }
 .container.choixTaillePlateau h2{
-    margin : 2em 0 1em;
+    margin : 15vh 0 6vh;
+    font-size: 3rem;
 }
 .container.choixTaillePlateau p{
-    font-size: 0.5em;
+    font-size: 1.5rem;
     font-weight: 500;
 }
-.container.choixTaillePlateau p{
-    font-size: 0.5em;
-    font-weight: 500;
-}
-.container.choixTaillePlateau .button {
-    padding: 0.5em 1.75em 0.5em;
-}
+
 .container.choixTaillePlateau .bar-container{
-    margin : 2em 0 2em;
+    margin : 5vh 0 5vh;
     display: flex;
     justify-content: space-between;
-    gap: 1em;
     width: 50%;
     background-color: #1E1E1E;
     border-radius: 75px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .container.choixTaillePlateau .tailleValeur {
-    width: 1em;
-    height: 1em;
+    width: 0.75vw;
+    height: 0.75vw;
     border-radius: 50%;
     background-color: #E1E1E1;
     border:none;
@@ -297,12 +287,12 @@ body{
     transform: scale(2.5);
 }
 .container.choixTaillePlateau .plateau-container {
-    width: 7em;
-    height: 7em;
+    width: 25rem;
+    height: 25rem;
 }
 .container.choixTaillePlateau .quadrillage {
-    width: 7em;
-    height: 7em;
+    width: 25rem;
+    height: 25rem;
 }
 /* Jeu */
 .container.jeu {
@@ -316,23 +306,23 @@ body{
     transition: background 1s ease-in-out;
 }
 .container.jeu .title{
-    margin: -1em 0 1em;
-    font-size: 1.5em;
+    margin: 1vh;
+    font-size: 4rem;
     font-weight: 600;
 }
 .container.jeu .button{
     margin: 0;
     position: absolute;
-    bottom: 2em;
-    right: 2em;
+    bottom: 3rem;
+    right: 3rem;
     font-weight: bold;
 }
 .container.jeu .historique{
     position: absolute;
-    font-size: 0.4em;
+    font-size: 1rem;
     text-align: left;
-    bottom: 2em;
-    left: 2em;
+    bottom: 3rem;
+    left: 3rem;
 }
 
 /* Tour joueur Blanc*/
@@ -350,3 +340,55 @@ body{
     color: #1E1E1E;
     background: #E1E1E1;
 }
+
+
+
+
+
+/* Media queries , Merci de laisser ceci à la fin du Css^^ */
+
+/* Téléphone (petit) */
+@media (max-width: 480px) {
+    html{
+        font-size: 6px;
+    }
+    .container.jeu .historique {
+        font-size: 2rem;
+    }
+}
+
+/* Téléphone */
+@media (min-width: 481px) and (max-width: 767px) {
+    html{
+        font-size: 7px;
+    }
+    .container.jeu .historique {
+        font-size: 2rem;
+    }
+}
+/* Tablette (petit) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    html{
+        font-size: 10px;
+    }
+}
+/* Tablette */
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
+    html{
+        font-size: 12px;
+    }
+}
+
+/* === Ordinateurs (petits écrans) === */
+@media screen and (min-width: 1280px) and (max-width: 1440px) {
+    html{
+        font-size: 14px;
+    }
+}
+/* === Ordinateurs (écrans moyen )=== */
+@media screen and (min-width: 1441px) and (max-width: 1920px) {
+    html{
+        font-size: 15px;
+    }
+}
+
