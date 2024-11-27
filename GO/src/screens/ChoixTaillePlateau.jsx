@@ -13,7 +13,7 @@ const ChoixTaillePlateau = () => {
         <div className={`container choixTaillePlateau ${couleur}`}>
             <BoutonMaison couleur={couleur} />
             <h2>Définissez la taille du plateau</h2>
-            <Plateau taille={tailleSelect} estJouable={false}/>
+            <Plateau taille={tailleSelect}/>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect} />
             <Link className="button" to="Jeu" state={{ tailleSelect }}>Confirmer</Link>
