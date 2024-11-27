@@ -1,14 +1,12 @@
 import {useState} from "react";
 
-const Plateau = ({taille, estJouable}) => {
+const Plateau = ({taille, estJouable, couleur, setCouleur}) => {
         taille += 1;
 
     const [pions, setPions] = useState(
-        Array.from({ length: taille * taille }, () => "pion") // Initialise un tableau de classes "pion"
+        Array.from({ length: (taille-1) * (taille-1) }, () => "pion")
     );
 
-
-    const [couleur, setCouleur] = useState("noir");
 
     const handleClick = (index) => {
 
@@ -23,11 +21,14 @@ const Plateau = ({taille, estJouable}) => {
                 i === index ? `pion pose ${couleur}` : classPion
             )
         );
-        prochainTour();
+        setCouleur(prochainTour({ Couleur: couleur }));
+
     };
 
-    const prochainTour = () => {
-        setCouleur((prevCouleur) => (prevCouleur === "noir" ? "blanc" : "noir"));
+    const prochainTour = ({Couleur}) => {
+        console.log(Couleur);
+
+        return Couleur === "noir" ? "blanc" : "noir";
     };
 
         return (
@@ -88,9 +89,9 @@ const Plateau = ({taille, estJouable}) => {
 
                         {estJouable && (
                             <g>
-                                {Array.from({ length: taille * taille }).map((_, index) => {
-                                    const x = 10 + (80 / taille) * (index % taille);
-                                    const y = 10 + (80 / taille) * Math.floor(index / taille);
+                                {Array.from({ length: (taille-1) * (taille-1) }).map((_, index) => {
+                                    const x = 10 + (80 / (taille)) * (((index) % (taille-1))+1);
+                                    const y = 10 + (80 / (taille)) * (Math.floor((index) / (taille-1))+1);
                                     return (
                                         <circle
                                             key={index}

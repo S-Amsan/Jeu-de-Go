@@ -5,11 +5,14 @@ import {useState} from "react";
 const Jeu = () => {
     const location = useLocation();
     const taille = (location.state?.tailleSelect || 19);
-    const [couleur, setCouleur] = useState("noir");
+    const [couleur, setCouleur] = useState("blanc");
+
+
+
     return (
         <div className={`container jeu ${couleur}`}>
-                <h1 className="title">Tour du Joueur Noir</h1>
-            <Plateau taille={taille} estJouable={true}/>
+                <h1 className="title">Tour du Joueur {couleur === "noir" ? "Noir":"Blanc"}</h1>
+            <Plateau taille={taille} estJouable={true} couleur={couleur} setCouleur={setCouleur}/>
             <div className="historique">
                 <p>Le joueur Blanc a joué A4</p>
                 <p>Le joueur Noir a joué A5</p>
