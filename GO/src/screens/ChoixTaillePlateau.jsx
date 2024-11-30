@@ -7,7 +7,8 @@ import BoutonMaison from "../components/BoutonMenu.jsx";
 const ChoixTaillePlateau = () => {
     const location = useLocation();
     const [tailleSelect, setTailleSelect] = useState(19);
-    const [couleur] = useState(location.state?.couleur || "blanc");
+    const [couleur] = useState(location.state?.couleur || "noir");
+    const [nbJoueurs] = useState(location.state?.nbJoueurs || 1);
 
     return (
         <div className={`container choixTaillePlateau ${couleur}`}>
@@ -16,7 +17,7 @@ const ChoixTaillePlateau = () => {
             <Plateau taille={tailleSelect}/>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect} />
-            <Link className="button" to="Jeu" state={{ tailleSelect }}>Confirmer</Link>
+            <Link className="button" to="Jeu" state={{ tailleSelect,nbJoueurs, couleur}}>Confirmer</Link>
         </div>
     );
 };
