@@ -17,7 +17,7 @@ const ChoixTaillePlateau = () => {
             <Plateau taille={tailleSelect}/>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect} />
-            <Link className="button" to="Jeu" state={{ tailleSelect,nbJoueurs, couleur}}>Confirmer</Link>
+            <Link className="button" to="Jeu" state={{ tailleSelect,nbJoueurs,couleur }}>Confirmer</Link>
         </div>
     );
 };

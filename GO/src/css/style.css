@@ -329,7 +329,7 @@ body{
     height: 25rem;
 }
 
-/* Jeu */
+/* Jeu, c'est ici que vos parties palpitantes se dérouleront ! ^^*/
 .container.jeu {
     margin: 0;
     width: 100vw;
@@ -359,9 +359,6 @@ body{
     bottom: 3rem;
     left: 3rem;
 }
-
-
-
 
 
 /* Media queries , Merci de laisser ceci à la fin du Css^^ */
