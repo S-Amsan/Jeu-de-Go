@@ -158,6 +158,34 @@ body{
     background-color: #1E1E1E;
     box-shadow: 0 4px 6px rgb(225, 225, 225);
 }
+
+/* Historique */
+.container .historique{
+    height: 10rem;
+    overflow: auto;
+    position: absolute;
+    font-size: 1rem;
+    text-align: left;
+    bottom: 3rem;
+    left: 3rem;
+    padding-right: 3rem;
+}
+.container .dernierCoup{
+    font-weight: 600;
+}
+.container .historique::-webkit-scrollbar {
+    width: 12px;
+}
+.container .historique::-webkit-scrollbar-thumb {
+    background: #888888FF;
+}
+.container .historique::-webkit-scrollbar-thumb:hover {
+    background: #555555FF;
+}
+.container .historique::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
 /* Test (Page) */
 .container.test{
     margin: 10vh 0 0;
@@ -396,13 +424,7 @@ body{
     right: 3rem;
     font-weight: bold;
 }
-.container.jeu .historique{
-    position: absolute;
-    font-size: 1rem;
-    text-align: left;
-    bottom: 3rem;
-    left: 3rem;
-}
+
 
 
 /* Media queries , Merci de laisser ceci à la fin du Css^^ */

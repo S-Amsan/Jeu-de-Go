@@ -12,8 +12,8 @@ const Curseur = ({ taille, couleur }) => {
     }, []);
 
 
-    console.log("Position curseur :", position);
-    console.log("Couleur du curseur :", couleur);
+    //console.log("Position curseur :", position);
+    //console.log("Couleur du curseur :", couleur);
 
     const getContour = () => {
         if (couleur === "#E1E1E1")
