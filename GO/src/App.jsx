@@ -5,6 +5,7 @@ import ChoixJoueurs from "./screens/choixJoueurs.jsx";
 import ChoixCamp from "./screens/ChoixCamp.jsx";
 import ChoixTaillePlateau from "./screens/ChoixTaillePlateau.jsx";
 import Jeu from "./screens/Jeu.jsx";
+import Test from './screens/Test';
 
 const AppContent = () => {
 
@@ -12,6 +13,7 @@ const AppContent = () => {
         <>
             <Routes>
                 <Route path="/" element={<Menu />} />
+                <Route path="/Test" element={<Test />} />
                 <Route path="/Regles" element={<Regles />} />
                 <Route path="/NbJoueurs" element={<ChoixJoueurs />} />
                 <Route path="/NbJoueurs/ChoixCamp" element={<ChoixCamp />} />
