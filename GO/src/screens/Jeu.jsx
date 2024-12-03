@@ -4,6 +4,7 @@ import Plateau from "../components/Plateau.jsx";
 import HistoriqueCoup from "../components/HistoriqueCoup.jsx";
 import TitreNbJoueurs from "../components/TitreNbJoueurs.jsx";
 import Curseur from "../components/Curseur.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Jeu = () => {
     const location = useLocation();
@@ -32,6 +33,23 @@ const Jeu = () => {
         blanc: "#E1E1E1",
     };
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (nbJoueur === 1) {
+            navigate("FinJeu", { state : {
+                couleur: couleur==='noir'?'noir':'blanc',
+                nbJoueur: 1
+            }});
+        }
+        else if (nbJoueur === 2) {
+            navigate("FinJeu", { state : {
+                couleur: couleur==='noir'?'blanc':'noir',
+                nbJoueur: 2
+            }});
+        }
+    };
+
     return (
         <div className={`container jeu ${couleur}`}>
             <Curseur
@@ -53,7 +71,7 @@ const Jeu = () => {
                 handleCoupJoue={handleCoupJoue}
             />
             <HistoriqueCoup historique={historique} />
-            <Link className="button" to="/">Abandon</Link>
+            <button className="button" onClick={handleClick}>Abandon</button>
         </div>
     );
 };

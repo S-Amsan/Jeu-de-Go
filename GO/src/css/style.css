@@ -425,6 +425,11 @@ body{
     font-weight: bold;
 }
 
+.container.fin-jeu .button {
+    padding: 1rem;
+    margin-top: +5vh;
+}
+
 
 
 /* Media queries , Merci de laisser ceci à la fin du Css^^ */

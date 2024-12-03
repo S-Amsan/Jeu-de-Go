@@ -6,6 +6,7 @@ import ChoixCamp from "./screens/ChoixCamp.jsx";
 import ChoixTaillePlateau from "./screens/ChoixTaillePlateau.jsx";
 import Jeu from "./screens/Jeu.jsx";
 import Test from './screens/Test';
+import FinJeu from "./screens/FinJeu.jsx";
 
 const AppContent = () => {
 
@@ -21,6 +22,8 @@ const AppContent = () => {
                 <Route path="/NbJoueurs/ChoixCamp/ChoixTaillePlateau" element={<ChoixTaillePlateau />} />
                 <Route path="/NbJoueurs/ChoixTaillePlateau/Jeu" element={<Jeu />} />
                 <Route path="/NbJoueurs/ChoixCamp/ChoixTaillePlateau/Jeu" element={<Jeu />} />
+                <Route path="/NbJoueurs/ChoixTaillePlateau/Jeu/FinJeu" element={<FinJeu />} />
+                <Route path="/NbJoueurs/ChoixCamp/ChoixTaillePlateau/Jeu/FinJeu" element={<FinJeu />} />
             </Routes>
         </>
     );
