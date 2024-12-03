@@ -1,48 +1,62 @@
 import axios from "axios";
-// setReponse et setErreur ne sont pas obligatoire
-// mais c'est mieux car ça nous permet de vérifier que tous va bien (Dans la page Test)
-// Fonction pour envoyer une commande au backend
-const sendCommand = async (command, setReponse, setErreur) => {
+
+// Fonction pour envoyer une commande au backend (GnuGo)
+const sendCommand = async (command) => {
     try {
         const res = await axios.post("http://localhost:3001/gnugo", { command });
-        setReponse(res.data.response);
-        setErreur("");
+        return (res.data.response); // Retourner la réponse de GnuGo
     } catch (erreur) {
         console.error("Erreur lors de l'envoi de la commande :", erreur);
-        setErreur("Erreur de communication avec le serveur");
-        setReponse("");
+        return "Erreur de communication avec le serveur"; // Retourner l'erreur
     }
 };
 
-
-// Les commandes (Il en reste encore ! Mais je ne sais pas si c'est nécésaire de les ajouter)
-export const showBoard = (setReponse, setErreur) => sendCommand("showboard", setReponse, setErreur);
-export const clearBoard = (setReponse, setErreur) => sendCommand("clear_board", setReponse, setErreur);
-export const genMove = (couleur, setReponse, setErreur) => {
+// Commandes
+export const showBoard = async () => {
+    return await sendCommand("showboard");
+};
+export const clearBoard = async () => {
+    return await sendCommand("clear_board");
+};
+export const genMove = async (couleur) => {
     if (couleur) {
-        sendCommand(`genmove ${couleur}`, setReponse, setErreur);
-    }else{
-        setErreur("Veuillez entrer une couleur.");
+        return await sendCommand(`genmove ${couleur}`);
+    } else {
+        return "Veuillez entrer une couleur.";
     }
-}
-export const playMove = (couleur, coordonnees, setReponse, setErreur) => {
+};
+export const captures = async (couleur) => {
+    if (couleur) {
+        return await sendCommand(`captures ${couleur}`);
+    } else {
+        return "Veuillez entrer une couleur.";
+    }
+};
+export const playMove = async (couleur, coordonnees) => {
     if (coordonnees && couleur) {
-        sendCommand(`play ${couleur} ${coordonnees}`, setReponse, setErreur);
+        return await sendCommand(`play ${couleur} ${coordonnees}`);
     } else {
-        setErreur("Veuillez entrer une coordonnees et une couleur.");
+        return "Veuillez entrer une coordonnée et une couleur.";
     }
 };
-export const setBoardSize = (size, setReponse, setErreur) => {
+export const setBoardSize = async (size) => {
     if (size) {
-        sendCommand(`boardsize ${size}`, setReponse, setErreur);
+        return await sendCommand(`boardsize ${size}`);
     } else {
-        setErreur("Veuillez entrer une taille de plateau.");
+        return "Veuillez entrer une taille de plateau.";
     }
 };
-export const allLegal = (couleur,setReponse, setErreur) => {
+export const allLegal = async (couleur) => {
     if (couleur) {
-        sendCommand(`all_legal ${couleur}`, setReponse, setErreur);
+        return await sendCommand(`all_legal ${couleur}`);
     } else {
-        setErreur("Veuillez entrer une couleur");
+        return "Veuillez entrer une couleur.";
+    }
+};
+export const isLegal = async (couleur, coordonnees) => {
+    if (coordonnees && couleur) {
+        return await sendCommand(`is_legal ${couleur} ${coordonnees}`);
+    } else {
+        return "Veuillez entrer une coordonnée et une couleur.";
     }
 };

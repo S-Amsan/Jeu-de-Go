@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Plateau from "../components/Plateau.jsx";
 import HistoriqueCoup from "../components/HistoriqueCoup.jsx";
 import TitreNbJoueurs from "../components/TitreNbJoueurs.jsx";

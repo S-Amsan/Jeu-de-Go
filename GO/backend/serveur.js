@@ -31,12 +31,12 @@ gnugoProcess.stdout.on('data', (data) => {
     }
 });
 
-//Gérer les erreurs
+// Gérer les erreurs
 gnugoProcess.stderr.on('data', (data) => {
     console.error(`GnuGo stderr: ${data.toString()}`);
 });
 
-//Fonction pour envoyer une commande à GNU Go
+// Fonction pour envoyer une commande à GNU Go
 function sendGnuGoCommand(command) {
     return new Promise((resolve, reject) => {
         commandQueue.push({ command, resolve, reject });
@@ -45,18 +45,18 @@ function sendGnuGoCommand(command) {
     });
 }
 
-//Recevoir les commandes depuis le frontend
+// Recevoir les commandes depuis le frontend
 app.post('/gnugo', async (req, res) => {
     const { command } = req.body;
-    console.log(``);
-    console.log(`Commande n°${compteur++} :`);
+    console.log(`Commande n°${compteur++}:`);
     console.log(`Commande reçue du frontend: ${command}`);
     try {
         const response = await sendGnuGoCommand(command);
-        console.log(`Réponse reçu de GnuGo et envoyée au frontend: ${response}`);
-        res.send({ response });
+        console.log(`Réponse reçue de GnuGo et envoyée au frontend: ${response}`);
+        res.send({ response });  // Renvoie la réponse de GnuGo
     } catch (error) {
-        res.status(500).send({ error: 'Erreur lors de la communication avec GnuGo' });
+        console.error('Erreur lors de la communication avec GnuGo:', error);
+        res.status(500).send('Erreur lors de la communication avec GnuGo');  // Renvoie une erreur en cas de problème
     }
 });
 

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import * as commande from "../services/gnugoGTP.jsx";
+import {isLegal} from "../services/gnugoGTP.jsx";
 
 const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) => {
+
     taille += 1;
     //tableau de pion (les classes)
     const [pions, setPions] = useState(
@@ -11,26 +14,46 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) =>
         Array.from({ length: (taille - 1) * (taille - 1) }).map((_, index) => {
             const x = taille - (Math.floor(index / (taille - 1)) + 1);
             const y = (index % (taille - 1)) + 1;
-            return x.toString() + String.fromCharCode(64 + y);
+            return  String.fromCharCode(64 + (y > 8 ? y + 1 : y)) + x.toString();
         })
     );
+
+
+    const verifCoup = async (couleurEN, coordonnees) => {
+        const coup = await commande.isLegal(couleurEN, coordonnees);
+        return coup.includes("1");
+    };
     const [historique, setHistorique] = useState([]);
-    const handleClick = (index) => {
+    const handleClick = async (index) => {
         const pionClique = pions[index];
         const coupJoue = coordonnees[index].toString();
+        const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
+        let coup;
+
         if (pionClique.includes("pose")) {
             return;
         }
-        // Modification de la classe du pion :
-        setPions((prevPions) =>
-            prevPions.map((classPion, i) =>
-                i === index ? `pion pose ${couleur}` : classPion
-            )
-        );
-        setCouleur(prochainTour({ Couleur: couleur }));
-        // Ajout des coordonées dans l'historique
-        // text selon qui a joué :
-        const coup = "Le joueur "+(couleur === "noir" ? "Noir" : "Blanc")+" a joué " + coupJoue;
+
+        const isLegal = await verifCoup(couleurEN, coupJoue);
+        console.log(isLegal);
+
+        if(isLegal){
+            // Modification de la classe du pion :
+            setTimeout(() => {
+                commande.playMove(couleurEN, coupJoue);
+            }, 500);
+            setPions((prevPions) =>
+                prevPions.map((classPion, i) =>
+                    i === index ? `pion pose ${couleur}` : classPion
+                )
+            );
+            setCouleur(prochainTour({ Couleur: couleur }));
+            // Ajout des coordonées dans l'historique
+            // text selon qui a joué :
+            coup = "Le joueur "+(couleur === "noir" ? "Noir" : "Blanc")+" a joué " + coupJoue;
+        }else{
+            coup = "Coup illégal !"
+        }
         setHistorique(() => [...historique, coordonnees]); //ajoute dans l'historique
         handleCoupJoue({ coordonnees: coup });
     };
@@ -118,7 +141,7 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) =>
                                 textAnchor="middle"
                                 alignmentBaseline="middle"
                             >
-                                {String.fromCharCode(64 + index)}
+                                {String.fromCharCode(64 + (index > 8 ? index + 1 : index))} {/* Condition pour ne pas afficher le I (car souvent confondu par le 1) */}
                             </text>
                             <line
                                 x1={10 + (80 / taille)}
