@@ -425,9 +425,13 @@ body{
     font-weight: bold;
 }
 
+.container.fin-jeu .button-container{
+    margin-top: 4rem;
+}
+
 .container.fin-jeu .button {
-    padding: 1rem;
-    margin-top: +5vh;
+    padding: 1rem 3.5rem;
+    margin: 1.5rem;
 }
 
 

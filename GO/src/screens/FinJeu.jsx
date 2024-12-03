@@ -1,15 +1,10 @@
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const FinJeu = () => {
 
     const location = useLocation();
     const { couleur } = location.state;
     const { nbJoueur } = location.state;
-    const navigate = useNavigate();
-
-    const handleNavigate = (path) => {
-        navigate(`/${path}`)
-    }
 
     const MessageVictoire = () => {
         if (nbJoueur === 1) {
@@ -26,8 +21,8 @@ const FinJeu = () => {
         <div className="container fin-jeu">
             <MessageVictoire/>
             <div className="button-container">
-                <button className="button" onClick={() => handleNavigate('NbJoueurs')} type="button">Rejouer</button>
-                <button className="button" onClick={() => handleNavigate('')}>Quitter</button>
+                <Link className="button" to="/NbJoueurs">Rejouer</Link>
+                <Link className="button" to="/">Quitter</Link>
             </div>
         </div>
     )
