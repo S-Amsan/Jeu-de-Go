@@ -427,11 +427,29 @@ body{
 .container.jeu .button{
     margin: 0;
     position: absolute;
-    bottom: 3rem;
-    right: 3rem;
     font-weight: bold;
+    bottom: 3rem;
+}
+.container.jeu .button.abandon{
+    right: 3rem;
+}
+.container.jeu .button.pass{
+    right: 20rem;
+    width: 11rem;
+}
+.container.jeu .jeuInfo {
+    position : relative;
+}
+.container.jeu .pierresCapturees {
+    position: absolute;
+    font-size: 1.25rem;
+    left: 100%;
+    bottom: 15%;
+    text-align: left;
+    width: 20rem;
 }
 
+/* Fin de jeu */
 .container.fin-jeu .button-container{
     margin-top: 4rem;
 }

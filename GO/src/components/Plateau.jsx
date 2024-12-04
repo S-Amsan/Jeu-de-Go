@@ -1,9 +1,7 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import * as commande from "../services/gnugoGTP.jsx";
-import {isLegal} from "../services/gnugoGTP.jsx";
 
-const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) => {
-
+const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJoueurs, setPierresCapturees, handleCoupJoue }) => {
     taille += 1;
     //tableau de pion (les classes)
     const [pions, setPions] = useState(
@@ -17,30 +15,64 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) =>
             return  String.fromCharCode(64 + (y > 8 ? y + 1 : y)) + x.toString();
         })
     );
-
-
     const verifCoup = async (couleurEN, coordonnees) => {
         const coup = await commande.isLegal(couleurEN, coordonnees);
         return coup.includes("1");
     };
     const [historique, setHistorique] = useState([]);
-    const handleClick = async (index) => {
+
+    useEffect(() => { // Intervale qui permet à Gnugo de joué
+        if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
+            const intervalId = setInterval(() => {
+                getGnuGoCoup();
+            }, 3000); // Il joue toutes les 3 secondes
+            return () => clearInterval(intervalId);
+        }
+    }, [nbJoueurs, campJoueurSolo, couleur]);
+
+
+    const getGnuGoCoup = async () => {
+        const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
+        const coup = (await commande.genMove(couleurEN)).split("").filter(x => x !== " " && x !== "=").join("");
+        const index = coordonnees.indexOf(coup);
+        handleClick(index, false);
+    }
+
+
+
+    const handleClick = async (index, joueurACliquer) => {
         const pionClique = pions[index];
         const coupJoue = coordonnees[index].toString();
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
         let coup;
+        let quiAJoue = "Le Joueur ";
+        let quelleCouleurAJoue ="";
 
-        if (pionClique.includes("pose")) {
+        if (pionClique.includes("pose") || (joueurACliquer && (nbJoueurs === 1 && campJoueurSolo !== couleur))) {
             return;
         }
-
-        const isLegal = await verifCoup(couleurEN, coupJoue);
-        console.log(isLegal);
+        let isLegal;
+        if (joueurACliquer){
+            isLegal = await verifCoup(couleurEN, coupJoue);
+        }else{
+            isLegal = true; // car Gnugo ne se trompe pas
+        }
 
         if(isLegal){
-            // Modification de la classe du pion :
+            // On actualise les pierres capturées :
+            let blancACapture;
+            let noirACapture;
+            setTimeout(async () => {
+                blancACapture = (await commande.captures("white")).split("").filter(x => x !== " " && x !== "=").join("");
+                noirACapture = (await commande.captures("black")).split("").filter(x => x !== " " && x !== "=").join("");
+                setPierresCapturees((prevPierresCapturees) => ({...prevPierresCapturees, blanc: blancACapture, noir: noirACapture}));
+            }, 500);
+
+            // Modification de la classe du pion (On pose le pion):
             setTimeout(() => {
-                commande.playMove(couleurEN, coupJoue);
+                if(joueurACliquer) {
+                    commande.playMove(couleurEN, coupJoue);
+                }
             }, 500);
             setPions((prevPions) =>
                 prevPions.map((classPion, i) =>
@@ -50,7 +82,16 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) =>
             setCouleur(prochainTour({ Couleur: couleur }));
             // Ajout des coordonées dans l'historique
             // text selon qui a joué :
-            coup = "Le joueur "+(couleur === "noir" ? "Noir" : "Blanc")+" a joué " + coupJoue;
+            if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
+                quiAJoue = "GnuGo ";
+            }else if (nbJoueurs === 2) {
+                quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
+            }else{
+                quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
+                quelleCouleurAJoue = "("+quelleCouleurAJoue+")";
+            }
+
+            coup = quiAJoue + quelleCouleurAJoue + " a joué " + coupJoue;
         }else{
             coup = "Coup illégal !"
         }
@@ -185,7 +226,7 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, handleCoupJoue }) =>
                                     cx={x}
                                     cy={y}
                                     r={(100 / taille) / 3}
-                                    onClick={() => handleClick(index)}
+                                    onClick={() => handleClick(index, true)}
                                     style={{cursor: "pointer"}}
                                 />
                             );

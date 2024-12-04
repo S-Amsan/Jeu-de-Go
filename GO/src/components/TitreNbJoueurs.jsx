@@ -1,11 +1,11 @@
-const TitreNbJoueurs = ({ nbJoueurs, couleur, estTourDuJoueur }) => {
+const TitreNbJoueurs = ({ nbJoueurs, couleur, campJoueurSolo }) => {
     const getTitre = () => {
         if (nbJoueurs === 1) {
-            if (estTourDuJoueur) {
+            if (campJoueurSolo === couleur) {
                 return couleur === "noir" ? "Tour du Joueur Noir" : "Tour du Joueur Blanc";
             }
             else {
-                return "Tour du Bot";
+                return "Tour de GnuGo";
             }
         }
         else if (nbJoueurs === 2) {

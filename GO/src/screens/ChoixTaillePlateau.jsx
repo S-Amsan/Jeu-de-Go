@@ -10,8 +10,7 @@ const ChoixTaillePlateau = () => {
     const [tailleSelect, setTailleSelect] = useState(19);
     const [couleur] = useState(location.state?.couleur || "noir");
     const [nbJoueurs] = useState(location.state?.nbJoueurs || 1);
-    const [reponse, setReponse] = useState("=");
-    const [erreur, setErreur] = useState("");
+    const [campJoueurSolo] = useState(location.state?.campJoueurSolo);
     return (
         <div className={`container choixTaillePlateau ${couleur}`}>
             <BoutonMaison couleur={couleur} />
@@ -19,7 +18,7 @@ const ChoixTaillePlateau = () => {
             <Plateau taille={tailleSelect}/>
             <p>Taille sélectionnée : {tailleSelect}</p>
             <BarreTaille tailleSelect={tailleSelect} setTailleSelect={setTailleSelect} />
-            <Link className="button" to="Jeu" state={{ tailleSelect,nbJoueurs,couleur }} onClick = {() => commande.setBoardSize(tailleSelect,setReponse,setErreur)}>Confirmer</Link>
+            <Link className="button" to="Jeu" state={{ tailleSelect, nbJoueurs, couleur, campJoueurSolo  }} onClick = {() => commande.setBoardSize(tailleSelect)}>Confirmer</Link>
         </div>
     );
 };

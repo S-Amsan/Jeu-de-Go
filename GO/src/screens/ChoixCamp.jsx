@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 const ChoixCamp = () => {
     const navigate = useNavigate();
 
-    const handleClick = (camp) => {
-        navigate("ChoixTaillePlateau", { state: { couleur: camp } });
+    const handleClick = (campChoisi) => {
+        navigate("ChoixTaillePlateau", { state: { campJoueurSolo: campChoisi } });
     };
 
     return (

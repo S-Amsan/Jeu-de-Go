@@ -5,19 +5,20 @@ import HistoriqueCoup from "../components/HistoriqueCoup.jsx";
 import TitreNbJoueurs from "../components/TitreNbJoueurs.jsx";
 import Curseur from "../components/Curseur.jsx";
 import { useNavigate } from "react-router-dom";
+import PierresCapturees from "../components/PierresCapturees.jsx";
 
 const Jeu = () => {
     const location = useLocation();
     const taille = (location.state?.tailleSelect || 19);
-    const nbJoueur = location.state?.nbJoueurs || 1;
-    const [estTourDuJoueur, setEstTourDuJoueur] = useState(location.state?.couleur === "noir");
+    const nbJoueurs = location.state?.nbJoueurs || 1;
+    const [campJoueurSolo] = useState(location.state?.campJoueurSolo);
     const [couleur, setCouleur] = useState("noir");
     const [historique, setHistorique] = useState([]); // historique des coups joués
+    const [pierresCapturees, setPierresCapturees] = useState({ blanc: 0, noir: 0 });
+
     const handleCoupJoue = ({ coordonnees }) => { // on ajoute le coup dans l'historique
         setHistorique(() => [...historique, coordonnees]);
-        setEstTourDuJoueur((prev) => !prev); //ça passe de true a false ici
     };
-
     const calculerTailleCurseur = (taille) => {
         const tailleMax = 50;
         const tailleMin = 20;
@@ -36,13 +37,13 @@ const Jeu = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        if (nbJoueur === 1) {
+        if (nbJoueurs === 1) {
             navigate("FinJeu", { state : {
                 couleur: couleur==='noir'?'noir':'blanc',
                 nbJoueur: 1
             }});
         }
-        else if (nbJoueur === 2) {
+        else if (nbJoueurs === 2) {
             navigate("FinJeu", { state : {
                 couleur: couleur==='noir'?'blanc':'noir',
                 nbJoueur: 2
@@ -58,20 +59,28 @@ const Jeu = () => {
             />
 
             <TitreNbJoueurs
-                nbJoueurs={nbJoueur}
+                nbJoueurs={nbJoueurs}
                 couleur={couleur}
-                estTourDuJoueur={estTourDuJoueur}
+                campJoueurSolo={campJoueurSolo}
             />
-
-            <Plateau
-                taille={taille}
-                estJouable={true}
-                couleur={couleur}
-                setCouleur={setCouleur}
-                handleCoupJoue={handleCoupJoue}
-            />
-            <HistoriqueCoup historique={historique} />
-            <button className="button" onClick={handleClick}>Abandon</button>
+            <div className="jeuInfo">
+                <Plateau
+                    taille={taille}
+                    estJouable={true}
+                    couleur={couleur}
+                    setCouleur={setCouleur}
+                    campJoueurSolo={campJoueurSolo}
+                    nbJoueurs = {nbJoueurs}
+                    setPierresCapturees = {setPierresCapturees}
+                    handleCoupJoue={handleCoupJoue}
+                />
+                <PierresCapturees
+                    pierresCapturees={pierresCapturees}
+                />
+            </div>
+            <HistoriqueCoup historique={historique}/>
+            <button className="button abandon" onClick={handleClick}>Abandon</button>
+            <button className="button pass" >Pass</button>
         </div>
     );
 };
