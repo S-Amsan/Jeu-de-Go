@@ -19,6 +19,9 @@ const Test = () => {
                     <button className="button" onClick={() => handleCommande(commande.showBoard)}>
                         Show Board
                     </button>
+                    <button className="button" onClick={() => handleCommande(commande.clearBoard)}>
+                        Clear Board
+                    </button>
                     <button className="button" onClick={() => handleCommande(() => commande.genMove("white"))}>
                         Gen Move White
                     </button>
@@ -30,9 +33,6 @@ const Test = () => {
                     </button>
                     <button className="button" onClick={() => handleCommande(() => commande.captures("black"))}>
                         Captures Black
-                    </button>
-                    <button className="button" onClick={() => handleCommande(commande.clearBoard)}>
-                        Clear Board
                     </button>
                     <button className="button" onClick={() => handleCommande(() => commande.allLegal("white"))}>
                         All Legal White
@@ -50,6 +50,9 @@ const Test = () => {
                     placeholder="  Entrez une valeur (coordonnées ou taille)"
                 />
                 <div className="commande">
+                    <button className="button" onClick={() => handleCommande(() => commande.setBoardSize(valeur))}>
+                        Set Board Size
+                    </button>
                     <button className="button" onClick={() => handleCommande(() => commande.playMove("black", valeur))}>
                         Play Black
                     </button>
@@ -61,9 +64,6 @@ const Test = () => {
                     </button>
                     <button className="button" onClick={() => handleCommande(() => commande.isLegal("white", valeur))}>
                         Is Legal White
-                    </button>
-                    <button className="button" onClick={() => handleCommande(() => commande.setBoardSize(valeur))}>
-                        Set Board Size
                     </button>
                 </div>
             </div>

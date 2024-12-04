@@ -3,6 +3,17 @@ import { useEffect, useState } from "react";
 const Curseur = ({ taille, couleur }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
+    const calculerTailleCurseur = (taille) => {
+        const tailleMax = 50;
+        const tailleMin = 20;
+        const difference = tailleMax - tailleMin
+        const taillePlateau = tailleMax - (taille - 7) / (19 - 7) * difference;
+        return Math.max(tailleMin, taillePlateau);
+    };
+
+    const tailleCurseur = calculerTailleCurseur(taille);
+
+
     useEffect(() => {
         const handleMouseMove = (e) => {
             setPosition({ x: e.clientX, y: e.clientY });
@@ -11,7 +22,12 @@ const Curseur = ({ taille, couleur }) => {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const mapCouleur = {
+        noir: "#1E1E1E",
+        blanc: "#E1E1E1",
+    };
 
+    couleur = mapCouleur[couleur];
     //console.log("Position curseur :", position);
     //console.log("Couleur du curseur :", couleur);
 
@@ -28,10 +44,10 @@ const Curseur = ({ taille, couleur }) => {
         <div
             style={{
                 position: "fixed",
-                top: `${position.y - taille / 2}px`,
-                left: `${position.x - taille / 2}px`,
-                width: `${taille}px`,
-                height: `${taille}px`,
+                top: `${position.y - tailleCurseur / 2}px`,
+                left: `${position.x - tailleCurseur / 2}px`,
+                width: `${tailleCurseur}px`,
+                height: `${tailleCurseur}px`,
                 borderRadius: "50%",
                 backgroundColor: couleur,
                 border: `1px solid ${contour}`,
