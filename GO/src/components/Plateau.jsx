@@ -33,7 +33,7 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
 
     const getGnuGoCoup = async () => {
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
-        const coup = (await commande.genMove(couleurEN)).slice(2);
+        const coup = (await commande.genMove(couleurEN));
         if (coup === "PASS"){ // Si Gnugo Pass (pass son tour)
             handleCoupJoue("GnuGo Pass");
             setCouleur(couleur === "noir" ? "blanc" : "noir");
@@ -68,10 +68,9 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
             // On actualise les pierres capturées:
             let blancACapture;
             let noirACapture;
-            blancACapture = (await commande.captures("white")).slice(2);
-            noirACapture = (await commande.captures("black")).slice(2);
+            blancACapture = (await commande.captures("white"));
+            noirACapture = (await commande.captures("black"));
             setPierresCapturees((prevPierresCapturees) => ({...prevPierresCapturees, blanc: blancACapture, noir: noirACapture}));
-
             setPions((prevPions) =>
                 prevPions.map((classPion, i) =>
                     i === index ? `pion pose ${couleur}` : classPion
@@ -88,11 +87,28 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
                 quelleCouleurAJoue = "("+quelleCouleurAJoue+")";
             }
             coup = quiAJoue + quelleCouleurAJoue + " a joué " + coupJoue;
+            //On actualise la ligne et la colonne (des numérotations)
+            let colonneIndex = Number(coupJoue.charAt(0).charCodeAt(0) - 64);
+            let ligneIndex = taille-Number(coupJoue.slice(1));
+            setIndexCoupColonne(colonneIndex);
+            setIndexCoupLigne(ligneIndex);
         }else{
             coup = "Coup illégal !"
         }
         handleCoupJoue(coup);
     };
+
+    // Pour que les afficher les numéro (numérotation) en gras
+    const [indexCoupColonne, setIndexCoupColonne] = useState(1);
+    const [indexCoupLigne, setIndexCoupLigne] = useState(2);
+    const getClassNumColonne = (index) => {
+        return index === indexCoupColonne ? "actuel" : "";
+    };
+    const getClassNumLigne = (index) => {
+        return index === indexCoupLigne ? "actuel" : "";
+    };
+
+
 
     return (
         <div className="plateau-container">
@@ -165,10 +181,10 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
                 })}
                 {Array.from({length: taille}).map((_, index) => (
                     index !== 0 && (
-                        <g key={`rowCol-${index}`}>
+                        <g key={`${index}`}>
                             {/* Lignes */}
                             <text
-                                className="numerotation posLigne"
+                                className={`numerotation posColonne ${getClassNumColonne(index)}`}
                                 x={10 + (80 / taille) * index}
                                 y="7"
                                 fontSize="2"
@@ -187,7 +203,7 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
                             />
                             {/* Colonnes */}
                             <text
-                                className="numerotation posColonne"
+                                className={`numerotation posLigne ${getClassNumLigne(index)}`}
                                 x="7"
                                 y={10 + (80 / taille) * index}
                                 fontSize="2"
