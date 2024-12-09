@@ -18,6 +18,9 @@ export const showBoard = async () => {
 export const clearBoard = async () => {
     return await sendCommand("clear_board");
 };
+export const finalScore = async () => {
+    return await sendCommand("final_score");
+};
 export const genMove = async (couleur) => {
     if (couleur) {
         return await sendCommand(`genmove ${couleur}`);

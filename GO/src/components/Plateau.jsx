@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import * as commande from "../services/gnugoGTP.jsx";
 
-const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJoueurs, setPierresCapturees, handleCoupJoue }) => {
+const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJoueurs, setPierresCapturees, handleCoupJoue, historique }) => {
     taille += 1;
     //tableau de pion (les classes)
     const [pions, setPions] = useState(
@@ -37,8 +37,9 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
         if (coup === "PASS"){ // Si Gnugo Pass (pass son tour)
             handleCoupJoue("GnuGo Pass");
             setCouleur(couleur === "noir" ? "blanc" : "noir");
+            return;
         }
-        const index = coordonnees.indexOf(coup);
+        const index = coordonnees.indexOf(coup.toString());
         handleClick(index, false);
     }
 
@@ -47,8 +48,6 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
         const coupJoue = coordonnees[index].toString();
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
         let coup;
-        let quiAJoue = "Le Joueur ";
-        let quelleCouleurAJoue ="";
 
         if (pionClique.includes("pose") || (joueurACliquer && (nbJoueurs === 1 && campJoueurSolo !== couleur))) { // Ne peut pas jouer sur une pierre pose ou quand c'est le tour de Gnugo
             return;
@@ -66,18 +65,20 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
                 await commande.playMove(couleurEN, coupJoue); // On envoie le coup à GnuGo
             }
             // On actualise les pierres capturées:
-            let blancACapture;
-            let noirACapture;
-            blancACapture = (await commande.captures("white"));
-            noirACapture = (await commande.captures("black"));
+            const blancACapture = (await commande.captures("white"));
+            const noirACapture = (await commande.captures("black"));
             setPierresCapturees((prevPierresCapturees) => ({...prevPierresCapturees, blanc: blancACapture, noir: noirACapture}));
+            // On pose la pierre
             setPions((prevPions) =>
                 prevPions.map((classPion, i) =>
                     i === index ? `pion pose ${couleur}` : classPion
                 )
             );
-            setCouleur(couleur === "noir" ? "blanc" : "noir"); // On change le tour
+            // On change le tour
+            setCouleur(couleur === "noir" ? "blanc" : "noir");
             // text selon qui a joué (Pour l'historique des coups):
+            let quiAJoue = "Le Joueur ";
+            let quelleCouleurAJoue ="";
             if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
                 quiAJoue = "GnuGo ";
             }else if (nbJoueurs === 2) {
@@ -90,7 +91,7 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
             //On actualise la ligne et la colonne (des numérotations)
             let colonneIndex = Number(coupJoue.charAt(0).charCodeAt(0) - 64);
             let ligneIndex = taille-Number(coupJoue.slice(1));
-            setIndexCoupColonne(colonneIndex);
+            setIndexCoupColonne(colonneIndex > 8 ? colonneIndex - 1 : colonneIndex);
             setIndexCoupLigne(ligneIndex);
         }else{
             coup = "Coup illégal !"
@@ -99,14 +100,26 @@ const Plateau = ({ taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJo
     };
 
     // Pour que les afficher les numéro (numérotation) en gras
-    const [indexCoupColonne, setIndexCoupColonne] = useState(1);
-    const [indexCoupLigne, setIndexCoupLigne] = useState(2);
+    const [indexCoupColonne, setIndexCoupColonne] = useState();
+    const [indexCoupLigne, setIndexCoupLigne] = useState();
     const getClassNumColonne = (index) => {
+        if(dernierCoupEstPass()){
+            return "";
+        }
         return index === indexCoupColonne ? "actuel" : "";
     };
     const getClassNumLigne = (index) => {
+        if(dernierCoupEstPass()){
+            return "";
+        }
         return index === indexCoupLigne ? "actuel" : "";
     };
+    const dernierCoupEstPass = () => {
+        if(historique && historique.length !== 0){
+            return historique[historique.length - 1].includes("Pass");
+        }
+        return false
+    }
 
 
 

@@ -3,7 +3,7 @@ import * as commande from "../services/gnugoGTP.jsx";
 
 const Test = () => {
     const [valeur, setValeur] = useState(""); // Commande à envoyer
-    const [reponse, setReponse] = useState("="); // Réponse de gnugo
+    const [reponse, setReponse] = useState(" "); // Réponse de gnugo
 
     const handleCommande = async (callback) => {
         const resultat = await callback();
@@ -21,6 +21,9 @@ const Test = () => {
                     </button>
                     <button className="button" onClick={() => handleCommande(commande.clearBoard)}>
                         Clear Board
+                    </button>
+                    <button className="button" onClick={() => handleCommande(commande.finalScore())}>
+                        Final Score
                     </button>
                     <button className="button" onClick={() => handleCommande(() => commande.genMove("white"))}>
                         Gen Move White

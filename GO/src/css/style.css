@@ -116,14 +116,11 @@ body{
     fill: #1E1E1E;
 }
 
-.container.blanc .numerotation.actuel{
+.container.blanc .numerotation.actuel, .container.noir .numerotation.actuel{
     fill: #16BF49;
     font-weight: bold;
 }
-.container.noir .numerotation.actuel{
-    fill: #16BF49;
-    font-weight: bold;
-}
+
 /* Version Noir */
 .container.noir .quadrillage .contour{
     stroke : #E1E1E1;

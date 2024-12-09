@@ -1,20 +1,7 @@
-import {useNavigate} from "react-router-dom";
+const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue, handleFinJeu}) => {
 
-const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue}) => {
-    const navigate = useNavigate();
     const handleAbandon = () => {
-        if (nbJoueurs === 1) {
-            navigate("FinJeu", { state : {
-                    couleur: couleur==='noir'?'noir':'blanc',
-                    nbJoueur: 1
-                }});
-        }
-        else if (nbJoueurs === 2) {
-            navigate("FinJeu", { state : {
-                    couleur: couleur==='noir'?'blanc':'noir',
-                    nbJoueur: 2
-                }});
-        }
+        handleFinJeu(couleur==='noir'?'blanc':'noir')
     };
     const handlePass = () => {
         let couleurJoueur = couleur==='noir'?'Noir':'Blanc';
