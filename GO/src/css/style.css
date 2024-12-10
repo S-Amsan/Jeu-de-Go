@@ -253,6 +253,13 @@ body{
     margin: 0 0 6rem;
 }
 
+.container.menu .credit{
+    position: absolute;
+    bottom: 4vh;
+    justify-content: center;
+    font-size: 1rem;
+}
+
 /* Règles */
 .container.regles{
     margin:0;
