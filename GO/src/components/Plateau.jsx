@@ -21,26 +21,31 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         return coup.includes("1"); //GnuGo GTP renvoie 1 si c'est légal
     };
 
+    let gnugoGTPJoue = false;
     useEffect(() => { // Intervale qui permet à Gnugo de joué
         if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
             const intervalId = setInterval(() => {
                 getGnuGoCoup();
-            }, 3000); // Il joue toutes les 3 secondes
+            }, 2000); // Il joue toutes les 2 secondes
             return () => clearInterval(intervalId);
         }
-    }, [nbJoueurs, campJoueurSolo, couleur]);
-
+    }, [couleur]);
 
     const getGnuGoCoup = async () => {
+        if(gnugoGTPJoue)
+            return true;
+        gnugoGTPJoue = true;
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
         const coup = (await commande.genMove(couleurEN));
         if (coup === "PASS"){ // Si Gnugo Pass (pass son tour)
             handleCoupJoue("GnuGo Pass");
             setCouleur(couleur === "noir" ? "blanc" : "noir");
+            gnugoGTPJoue = false
             return;
         }
         const index = coordonnees.indexOf(coup.toString());
         handleClick(index, false);
+        gnugoGTPJoue = false;
     }
 
     const handleClick = async (index, joueurACliquer) => {
@@ -173,7 +178,7 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
                     const y = 10 + (80 / taille) * (Math.floor(index / (taille - 1)) + 1);
                     const posX = ((index % (taille - 1)) + 1);
                     const posY = (Math.floor(index / (taille - 1)) + 1);
-                    const posHoshiRef = taille-1 >= 12 ? 4:3;
+                    const posHoshiRef = (taille-1 >= 12) ? 4 : ((taille-1 >= 6)? 3 : 2);
                     let condition; //condition de placement des hoshi
                     if (posHoshiRef === 4 && taille % 2 === 0){
                         condition = ((posX === posHoshiRef || posX === taille-posHoshiRef || posX === (taille / 2)) && (posY === posHoshiRef || posY === taille-posHoshiRef || posY === (taille / 2)))

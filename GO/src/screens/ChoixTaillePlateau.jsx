@@ -8,7 +8,7 @@ import * as commande from "../services/gnugoGTP.jsx";
 const ChoixTaillePlateau = () => {
     const location = useLocation();
     const [tailleSelect, setTailleSelect] = useState(19);
-    const [couleur] = useState(location.state?.couleur || "noir");
+    const [couleur] = useState(location.state?.campJoueurSolo || "noir");
     const [nbJoueurs] = useState(location.state?.nbJoueurs || 1);
     const [campJoueurSolo] = useState(location.state?.campJoueurSolo);
     return (

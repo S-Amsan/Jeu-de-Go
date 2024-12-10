@@ -1,5 +1,5 @@
 const BarreTaille = ({tailleSelect, setTailleSelect}) => {
-    const tailles = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+    const tailles = [5,6,7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     return (
         <div className="bar-container">
             {tailles.map((taille, index) => (
