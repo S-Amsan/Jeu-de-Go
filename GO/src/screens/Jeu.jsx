@@ -39,7 +39,7 @@ const Jeu = () => {
             console.log("Calcul du vainqueur...");
         }
         // Mettre un chargement pour laisser à Gnugo le temp de calculer le gagnant
-        navigate("FinJeu", { state : {
+        navigate("/FinJeu", { state : {
                 couleur: vainqueur,
                 nbJoueur: 2
             }});

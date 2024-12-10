@@ -4,7 +4,7 @@ const ChoixCamp = () => {
     const navigate = useNavigate();
 
     const handleClick = (campChoisi) => {
-        navigate("ChoixTaillePlateau", { state: { campJoueurSolo: campChoisi } });
+        navigate("/ChoixTaillePlateau", { state: { campJoueurSolo: campChoisi } });
     };
 
     return (
