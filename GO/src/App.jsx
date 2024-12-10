@@ -18,7 +18,7 @@ const AppContent = () => {
                 <Route path="/Regles" element={<Regles />} />
                 <Route path="/NbJoueurs" element={<ChoixJoueurs />} />
                 <Route path="/ChoixCamp" element={<ChoixCamp />} />
-                <Route path="ChoixTaillePlateau" element={<ChoixTaillePlateau />} />
+                <Route path="/ChoixTaillePlateau" element={<ChoixTaillePlateau />} />
                 <Route path="/Jeu" element={<Jeu />} />
                 <Route path="/FinJeu" element={<FinJeu />} />
             </Routes>
