@@ -25,7 +25,10 @@ body{
     font-style: italic;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
+a{
+    color: #007bff;
+    text-decoration: none;
+}
 /* Version Blanche*/
 .container.blanc{
     background: #E1E1E1;
@@ -304,10 +307,7 @@ body{
 .container.regles .presenteSite p {
     padding-top:1vh;
 }
-.container.regles a{
-    color: #007bff;
-    text-decoration: none;
-}
+
 .container.regles a:hover {
     text-decoration: underline;
 }
