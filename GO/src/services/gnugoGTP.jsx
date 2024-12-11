@@ -35,6 +35,13 @@ export const captures = async (couleur) => {
         return "Veuillez entrer une couleur.";
     }
 };
+export const listStones = async (couleur) => {
+    if (couleur) {
+        return await sendCommand(`list_stones ${couleur}`);
+    } else {
+        return "Veuillez entrer une couleur.";
+    }
+};
 export const playMove = async (couleur, coordonnees) => {
     if (coordonnees && couleur) {
         return await sendCommand(`play ${couleur} ${coordonnees}`);

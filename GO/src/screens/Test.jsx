@@ -37,6 +37,12 @@ const Test = () => {
                     <button className="button" onClick={() => handleCommande(() => commande.captures("black"))}>
                         Captures Black
                     </button>
+                    <button className="button" onClick={() => handleCommande(() => commande.listStones("white"))}>
+                        List Stones White
+                    </button>
+                    <button className="button" onClick={() => handleCommande(() => commande.listStones("black"))}>
+                        List Stones Black
+                    </button>
                     <button className="button" onClick={() => handleCommande(() => commande.allLegal("white"))}>
                         All Legal White
                     </button>

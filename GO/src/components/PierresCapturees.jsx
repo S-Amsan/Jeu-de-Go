@@ -6,5 +6,4 @@ const PierresCapturees = ({ pierresCapturees }) => {
         </div>
     );
 };
-
 export default PierresCapturees;

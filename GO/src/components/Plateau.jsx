@@ -47,7 +47,40 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         handleClick(index, false);
         gnugoGTPJoue = false;
     }
+    const poserPion = (index, couleurPion) => {
+        setPions((prevPions) =>
+            prevPions.map((classPion, i) =>
+                i === index ? `pion pose ${couleurPion}` : classPion
+            )
+        );
+    }
+    const retirerPion = (index) => {
+        setPions((prevPions) =>
+            prevPions.map((classPion, i) =>
+                i === index ? `pion` : classPion
+            )
+        );
+    }
 
+    const actualiserPlateau = async () => {
+        const pionsNoir = (await commande.listStones("black")).split(" ");
+        const pionsBlanc = (await commande.listStones("white")).split(" ");
+        const pionsPoseIndex = [];
+        for (const pion of pionsNoir) {
+            const index = coordonnees.indexOf(pion);
+            poserPion(index,"noir");
+            pionsPoseIndex.push(index);
+        }
+        for (const pion of pionsBlanc) {
+            const index = coordonnees.indexOf(pion);
+            poserPion(index,"blanc");
+            pionsPoseIndex.push(index);
+        }
+        for(let i = 0; i < (taille - 1) * (taille - 1); ++i){
+            if(pionsPoseIndex.indexOf(i) === -1)
+                retirerPion(i);
+        }
+    }
     const handleClick = async (index, joueurACliquer) => {
         const pionClique = pions[index];
         const coupJoue = coordonnees[index].toString();
@@ -74,11 +107,7 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
             const noirACapture = (await commande.captures("black"));
             setPierresCapturees((prevPierresCapturees) => ({...prevPierresCapturees, blanc: blancACapture, noir: noirACapture}));
             // On pose la pierre
-            setPions((prevPions) =>
-                prevPions.map((classPion, i) =>
-                    i === index ? `pion pose ${couleur}` : classPion
-                )
-            );
+            poserPion(index,couleur);
             // On change le tour
             setCouleur(couleur === "noir" ? "blanc" : "noir");
             // text selon qui a joué (Pour l'historique des coups):
@@ -101,6 +130,7 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         }else{
             coup = "Coup illégal !"
         }
+        actualiserPlateau();
         handleCoupJoue(coup);
     };
 
@@ -125,9 +155,6 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         }
         return false
     }
-
-
-
     return (
         <div className="plateau-container">
             <svg className="quadrillage" viewBox="0 0 100 100" preserveAspectRatio="none">
