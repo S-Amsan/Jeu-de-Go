@@ -15,22 +15,18 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
             return  String.fromCharCode(64 + (y > 8 ? y + 1 : y)) + x.toString();
         })
     );
-    // On vérifie si le coup joué est légal
-    const verifCoup = async (couleurEN, coordonnees) => {
-        const coup = await commande.isLegal(couleurEN, coordonnees);
-        return coup.includes("1"); //GnuGo GTP renvoie 1 si c'est légal
-    };
+
 
     let gnugoGTPJoue = false;
-    useEffect(() => { // Intervale qui permet à Gnugo de joué
-        if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
+    useEffect(() => { // à chaque fois que la couleur change
+        actualiserPlateau();
+        if (nbJoueurs === 1 && campJoueurSolo !== couleur) { // Si c'est le tour de gnugo
             const intervalId = setInterval(() => {
                 getGnuGoCoup();
             }, 2000); // Il joue toutes les 2 secondes
             return () => clearInterval(intervalId);
         }
     }, [couleur]);
-
     const getGnuGoCoup = async () => {
         if(gnugoGTPJoue)
             return true;
@@ -39,6 +35,11 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         const coup = (await commande.genMove(couleurEN));
         if (coup === "PASS"){ // Si Gnugo Pass (pass son tour)
             handleCoupJoue("GnuGo Pass");
+            setCouleur(couleur === "noir" ? "blanc" : "noir");
+            gnugoGTPJoue = false
+            return;
+        }else if (coup === "resign"){
+            handleCoupJoue("GnuGo resign");
             setCouleur(couleur === "noir" ? "blanc" : "noir");
             gnugoGTPJoue = false
             return;
@@ -61,7 +62,6 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
             )
         );
     }
-
     const actualiserPlateau = async () => {
         const pionsNoir = (await commande.listStones("black")).split(" ");
         const pionsBlanc = (await commande.listStones("white")).split(" ");
@@ -81,6 +81,12 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
                 retirerPion(i);
         }
     }
+    // On regarde si c'est la fin du jeu :
+    // On vérifie si le coup joué est légal
+    const verifCoup = async (couleurEN, coordonnees) => {
+        const coup = await commande.isLegal(couleurEN, coordonnees);
+        return coup.includes("1"); //GnuGo GTP renvoie 1 si c'est légal
+    };
     const handleClick = async (index, joueurACliquer) => {
         const pionClique = pions[index];
         const coupJoue = coordonnees[index].toString();
@@ -130,7 +136,7 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
         }else{
             coup = "Coup illégal !"
         }
-        actualiserPlateau();
+
         handleCoupJoue(coup);
     };
 
@@ -138,20 +144,20 @@ const Plateau = ({taille, estJouable, couleur, setCouleur, campJoueurSolo, nbJou
     const [indexCoupColonne, setIndexCoupColonne] = useState();
     const [indexCoupLigne, setIndexCoupLigne] = useState();
     const getClassNumColonne = (index) => {
-        if(dernierCoupEstPass()){
+        if(!dernierCoupEstJoue()){
             return "";
         }
         return index === indexCoupColonne ? "actuel" : "";
     };
     const getClassNumLigne = (index) => {
-        if(dernierCoupEstPass()){
+        if(!dernierCoupEstJoue()){
             return "";
         }
         return index === indexCoupLigne ? "actuel" : "";
     };
-    const dernierCoupEstPass = () => {
+    const dernierCoupEstJoue = () => {
         if(historique && historique.length !== 0){
-            return historique[historique.length - 1].includes("Pass");
+            return !(historique[historique.length - 1].includes("Pass") || historique[historique.length - 1].includes("illégal"));
         }
         return false
     }

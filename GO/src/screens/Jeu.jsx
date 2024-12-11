@@ -16,6 +16,7 @@ const Jeu = () => {
     const [historique, setHistorique] = useState([]); // historique des coups joués
     const [pierresCapturees, setPierresCapturees] = useState({ blanc: 0, noir: 0 }); // Compteur des pierres capturé
     const [nbPass,setNbPass] = useState(0); // Compteur des tours passé (Pass)
+    const [jeuEnCours,SetJeuEnCours] = useState(true);
     const navigate = useNavigate();
 
     const handleCoupJoue = (coup) => { // On ajoute le coup dans l'historique et on regarde si les joueurs pass
