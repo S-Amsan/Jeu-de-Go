@@ -49,6 +49,7 @@ const Jeu = () => {
             <Curseur
                 taille={taille}
                 couleur={couleur}
+                campJoueurSolo={campJoueurSolo}
             />
 
             <TitreNbJoueurs

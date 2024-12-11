@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Curseur = ({ taille, couleur }) => {
+const Curseur = ({ taille, couleur, campJoueurSolo }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     const calculerTailleCurseur = (taille) => {
@@ -27,35 +27,36 @@ const Curseur = ({ taille, couleur }) => {
         blanc: "#E1E1E1",
     };
 
-    couleur = mapCouleur[couleur];
-    //console.log("Position curseur :", position);
-    //console.log("Couleur du curseur :", couleur);
 
     const getContour = () => {
-        if (couleur === "#E1E1E1")
+        if (couleur === "blanc")
             return "#1E1E1E"
-        else if (couleur === "#1E1E1E")
+        else if (couleur === "noir")
             return "#E1E1E1"
     }
 
     const contour = getContour()
 
-    return (
-        <div
-            style={{
-                position: "fixed",
-                top: `${position.y - tailleCurseur / 2}px`,
-                left: `${position.x - tailleCurseur / 2}px`,
-                width: `${tailleCurseur}px`,
-                height: `${tailleCurseur}px`,
-                borderRadius: "50%",
-                backgroundColor: couleur,
-                border: `1px solid ${contour}`,
-                pointerEvents: "none",
-                zIndex: 99999,
-            }}
-        />
-    );
+    if(!campJoueurSolo || campJoueurSolo === couleur) {
+        return (
+            <div
+                style={{
+                    position: "fixed",
+                    top: `${position.y - tailleCurseur / 2}px`,
+                    left: `${position.x - tailleCurseur / 2}px`,
+                    width: `${tailleCurseur}px`,
+                    height: `${tailleCurseur}px`,
+                    borderRadius: "50%",
+                    backgroundColor: mapCouleur[couleur],
+                    border: `1px solid ${contour}`,
+                    pointerEvents: "none",
+                    zIndex: 99999,
+                }}
+            />
+        );
+    }else{
+        return;
+    }
 };
 
 export default Curseur;
