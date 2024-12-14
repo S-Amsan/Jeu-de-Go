@@ -4,7 +4,7 @@ import maisonNoire from '../images/maison noire.png';
 
 const BoutonMaison = ({couleur}) => {
     const getImage = () => {
-        if(couleur === "blanc"){
+        if (couleur === "blanc") {
             return maisonNoire;
         }
         return maisonBlanche;

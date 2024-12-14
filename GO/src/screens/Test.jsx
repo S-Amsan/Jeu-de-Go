@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import * as commande from "../services/gnugoGTP.jsx";
 
 const Test = () => {

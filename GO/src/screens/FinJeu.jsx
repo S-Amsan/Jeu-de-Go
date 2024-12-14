@@ -3,8 +3,8 @@ import {Link, useLocation} from "react-router-dom";
 const FinJeu = () => {
 
     const location = useLocation();
-    const { couleur } = location.state;
-    const { nbJoueur } = location.state;
+    const {couleur} = location.state;
+    const {nbJoueur} = location.state;
 
     const MessageVictoire = () => {
         if (nbJoueur === 1) {
@@ -18,7 +18,7 @@ const FinJeu = () => {
     }
 
     return (
-        <div className="container fin-jeu">
+        <div className={`container fin-jeu ${couleur}`}>
             <MessageVictoire/>
             <div className="button-container">
                 <Link className="button" to="/NbJoueurs">Rejouer</Link>

@@ -1,4 +1,4 @@
-const PierresCapturees = ({ pierresCapturees }) => {
+const PierresCapturees = ({pierresCapturees}) => {
     return (
         <div className="pierresCapturees">
             <p>Blanc a capturé: {pierresCapturees.blanc} pierre{pierresCapturees.blanc > 1 ? "s" : ""}</p>

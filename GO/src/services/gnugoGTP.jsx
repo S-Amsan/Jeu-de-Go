@@ -3,7 +3,7 @@ import axios from "axios";
 // Fonction pour envoyer une commande au backend (GnuGo)
 const sendCommand = async (command) => {
     try {
-        const res = await axios.post("http://localhost:3001/gnugo", { command });
+        const res = await axios.post("http://localhost:3001/gnugo", {command});
         return (res.data.response.slice(2) || " "); // Retourner la réponse de GnuGo
     } catch (erreur) {
         console.error("Erreur lors de l'envoi de la commande :", erreur);

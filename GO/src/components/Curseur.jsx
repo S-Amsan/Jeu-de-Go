@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-const Curseur = ({ taille, couleur, campJoueurSolo }) => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+const Curseur = ({taille, couleur, campJoueurSolo, jeuEnCours}) => {
+    const [position, setPosition] = useState({x: 0, y: 0});
 
     const calculerTailleCurseur = (taille) => {
         const tailleMax = 50;
@@ -16,7 +16,7 @@ const Curseur = ({ taille, couleur, campJoueurSolo }) => {
 
     useEffect(() => {
         const handleMouseMove = (e) => {
-            setPosition({ x: e.clientX, y: e.clientY });
+            setPosition({x: e.clientX, y: e.clientY});
         };
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -37,7 +37,7 @@ const Curseur = ({ taille, couleur, campJoueurSolo }) => {
 
     const contour = getContour()
 
-    if(!campJoueurSolo || campJoueurSolo === couleur) {
+    if ((!campJoueurSolo || campJoueurSolo === couleur) && jeuEnCours) {
         return (
             <div
                 style={{
@@ -51,10 +51,11 @@ const Curseur = ({ taille, couleur, campJoueurSolo }) => {
                     border: `1px solid ${contour}`,
                     pointerEvents: "none",
                     zIndex: 99999,
+                    opacity: 0.9,
                 }}
             />
         );
-    }else{
+    } else {
         return;
     }
 };

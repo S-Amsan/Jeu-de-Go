@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const ChoixCamp = () => {
     const navigate = useNavigate();
 
     const handleClick = (campChoisi) => {
-        navigate("/ChoixTaillePlateau", { state: { campJoueurSolo: campChoisi } });
+        navigate("/ChoixTaillePlateau", {state: {campJoueurSolo: campChoisi}});
     };
 
     return (

@@ -1,19 +1,19 @@
-const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue, handleFinJeu}) => {
+const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue, handleFinJeu, jeuEnCours}) => {
 
     const handleAbandon = () => {
-        handleFinJeu(couleur==='noir'?'blanc':'noir')
+        handleFinJeu(couleur === 'noir' ? 'blanc' : 'noir')
     };
     const handlePass = () => {
-        let couleurJoueur = couleur==='noir'?'Noir':'Blanc';
+        let couleurJoueur = couleur === 'noir' ? 'Noir' : 'Blanc';
         if (nbJoueurs === 1) {
-            couleurJoueur = "("+couleurJoueur+")";
+            couleurJoueur = "(" + couleurJoueur + ")";
         }
-        const coup = "Le Joueur "+ couleurJoueur + " Pass";
+        const coup = "Le Joueur " + couleurJoueur + " Pass";
         handleCoupJoue(coup)
         setCouleur(couleur === "noir" ? "blanc" : "noir");
     }
 
-    if (nbJoueurs === 2 || (nbJoueurs === 1 && couleur === campJoueurSolo)){ // On affiche pas les boutons quand c'est GnuGO qui joue
+    if ((nbJoueurs === 2 || (nbJoueurs === 1 && couleur === campJoueurSolo)) && jeuEnCours) { // On affiche pas les boutons quand c'est GnuGO qui joue
         return (
             <>
                 <button className="button abandon" onClick={handleAbandon}>Abandon</button>

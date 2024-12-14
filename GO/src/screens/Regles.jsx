@@ -34,7 +34,7 @@ const Regles = () => {
 
             <h1 className="title-outside">Présentation Site</h1>
             <section className="presenteSite">
-                <p className = "premierPdePresentation">
+                <p className="premierPdePresentation">
                     Notre site est une interface graphique utilisateur (GUI) moderne pour jouer au Go et interagir
                     facilement avec le jeu. Vous pourrez :
                 </p>
@@ -43,7 +43,8 @@ const Regles = () => {
                     <li><strong>Changer la taille du plateau selon vos préférences (ex. : 7x7, 19x19)</strong></li>
                     <li><strong>Réinitialiser le plateau en un clic pour commencer une nouvelle partie</strong></li>
                     <li><strong>Effectuer des coups en choisissant directement les positions des pierres</strong></li>
-                    <li><strong>Afficher l'état actuel du plateau avec une représentation claire des pierres</strong></li>
+                    <li><strong>Afficher l'état actuel du plateau avec une représentation claire des pierres</strong>
+                    </li>
                 </ul>
                 <p>
                     Cette interface intuitive est conçue pour refléter les interactions classiques d'une partie de
