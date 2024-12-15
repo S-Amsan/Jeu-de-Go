@@ -1,4 +1,4 @@
-const TitreNbJoueurs = ({nbJoueurs, couleur, campJoueurSolo}) => {
+const TitreNbJoueurs = ({nbJoueurs, couleur, campJoueurSolo, jeuTermine}) => {
     const getTitre = () => {
         if (nbJoueurs === 1) {
             if (campJoueurSolo === couleur) {
@@ -12,7 +12,10 @@ const TitreNbJoueurs = ({nbJoueurs, couleur, campJoueurSolo}) => {
     };
 
     const titre = getTitre();
-    return <h1 className="title">{titre}</h1>;
+    if (!jeuTermine) return <h1 className="title">{titre}</h1>;
+    return <div data-aos="flip-left">
+        <h1 className="title">La partie est terminé ! <br/><span className="animation-chargement">Calcul du résultat en cours</span></h1>
+    </div>;
 };
 
 export default TitreNbJoueurs;

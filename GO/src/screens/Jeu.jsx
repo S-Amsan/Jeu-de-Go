@@ -12,7 +12,8 @@ const Jeu = () => {
     const location = useLocation();
     const taille = (location.state?.tailleSelect || 19); // Taille du plateau
     const nbJoueurs = location.state?.nbJoueurs || 1; // Le nombre de vrai joueur ( 1 ou 2 )
-    const [campJoueurSolo] = useState(location.state?.campJoueurSolo); // la couleur choisie ,si il n'y a qu'un seul vrai joueur
+    const [campJoueurSolo] = useState(location.state?.campJoueurSolo);// la couleur choisie ,si il n'y a qu'un seul vrai joueur
+    const [jeuTermine, setJeuTermine] = useState(false);
     // On récupere les données (si l'utilisateur actualise la page)
     const [couleur, setCouleur] = useState(() => {
         const sauvegardeCouleur = localStorage.getItem("couleur");
@@ -64,6 +65,7 @@ const Jeu = () => {
     const finDeJeu = async () => {
         SetJeuEnCours(false);
         setHistorique((prevHistorique) => [...prevHistorique, "La partie est terminée"]);
+        setJeuTermine(true);
         console.log("calcul");
         const getVainqueur = await commande.finalScore();
         console.log("calcul terminée");
@@ -100,6 +102,7 @@ const Jeu = () => {
                 nbJoueurs={nbJoueurs}
                 couleur={couleur}
                 campJoueurSolo={campJoueurSolo}
+                jeuTermine={jeuTermine}
             />
             <div className="jeuInfo">
                 <Plateau
