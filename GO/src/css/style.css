@@ -533,6 +533,10 @@ a {
     text-align: left;
     width: 20rem;
 }
+.container.jeu h2 {
+    margin: 0;
+    font-weight: 400;
+}
 
 .animation-chargement::after {
     content: "";

@@ -13,7 +13,6 @@ const Jeu = () => {
     const taille = (location.state?.tailleSelect || 19); // Taille du plateau
     const nbJoueurs = location.state?.nbJoueurs || 1; // Le nombre de vrai joueur ( 1 ou 2 )
     const [campJoueurSolo] = useState(location.state?.campJoueurSolo);// la couleur choisie ,si il n'y a qu'un seul vrai joueur
-    const [jeuTermine, setJeuTermine] = useState(false);
     // On récupere les données (si l'utilisateur actualise la page)
     const [couleur, setCouleur] = useState(() => {
         const sauvegardeCouleur = localStorage.getItem("couleur");
@@ -65,10 +64,7 @@ const Jeu = () => {
     const finDeJeu = async () => {
         SetJeuEnCours(false);
         setHistorique((prevHistorique) => [...prevHistorique, "La partie est terminée"]);
-        setJeuTermine(true);
-        console.log("calcul");
         const getVainqueur = await commande.finalScore();
-        console.log("calcul terminée");
         console.log(getVainqueur);
         const vainqueur = getVainqueur.includes("B") ? "noir" : "blanc";
         const score = getVainqueur.slice(2); // A afficher sur l'ecran de fin!!!!!!!!!!!!!
@@ -76,12 +72,6 @@ const Jeu = () => {
     };
 
     const handleFinJeu = (vainqueur) => {
-        if (vainqueur) {
-            console.log(vainqueur);
-        } else {
-            console.log("Calcul du vainqueur...");
-        }
-        // Mettre un chargement pour laisser à Gnugo le temp de calculer le gagnant
         navigate("/FinJeu", {
             state: {
                 couleur: vainqueur,
@@ -102,7 +92,7 @@ const Jeu = () => {
                 nbJoueurs={nbJoueurs}
                 couleur={couleur}
                 campJoueurSolo={campJoueurSolo}
-                jeuTermine={jeuTermine}
+                jeuEnCours={jeuEnCours}
             />
             <div className="jeuInfo">
                 <Plateau
@@ -130,6 +120,7 @@ const Jeu = () => {
                 handleCoupJoue={handleCoupJoue}
                 handleFinJeu={handleFinJeu}
                 jeuEnCours={jeuEnCours}
+                finDeJeu={finDeJeu}
             />
             <HistoriqueCoup historique={historique}/>
 

@@ -5,7 +5,6 @@ const FinJeu = () => {
     const location = useLocation();
     const {couleur} = location.state;
     const {nbJoueur} = location.state;
-
     const MessageVictoire = () => {
         if (nbJoueur === 1) {
             return (

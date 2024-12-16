@@ -11,7 +11,8 @@ const Plateau = ({
                      setPierresCapturees,
                      handleCoupJoue,
                      historique,
-                     jeuEnCours
+                     jeuEnCours,
+                     finDeJeu
                  }) => {
     //tableau de pierres (les classes)
     const [pierres, setPierres] = useState(
@@ -36,8 +37,8 @@ const Plateau = ({
                 return;
             }
             verifPeutJouer().then(peutJouer => {
-                if (!peutJouer) {
-                    forcerPass();
+                if (!peutJouer) { // On arrete le jeu si il ne peut pas jouer, car ça veut dire qu'il peut jouer que des coup illégaux
+                    finDeJeu();
                 }
             })
             if (nbJoueurs === 1 && campJoueurSolo !== couleur) { // Si c'est le tour de gnugo
@@ -68,21 +69,6 @@ const Plateau = ({
         const index = coordonnees.indexOf(coup.toString());
         handleClick(index, false);
         gnugoGTPJoue = false;
-    }
-    const forcerPass = () => {
-        setCouleur(couleur === "noir" ? "blanc" : "noir");
-        let quiAJoue = "Le Joueur ";
-        let quelleCouleurAJoue = "";
-        if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
-            quiAJoue = "GnuGo ";
-        } else if (nbJoueurs === 2) {
-            quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
-        } else {
-            quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
-            quelleCouleurAJoue = "(" + quelleCouleurAJoue + ")";
-        }
-        const coup = quiAJoue + quelleCouleurAJoue + " Pass, aucun coup légal à jouer";
-        handleCoupJoue(coup);
     }
     // Gestion de pierres et du plateau
     const poserPierre = (index, couleurPierre) => {
