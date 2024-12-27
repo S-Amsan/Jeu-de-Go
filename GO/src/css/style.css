@@ -561,14 +561,16 @@ a {
 }
 
 /* Fin de jeu */
-.container.fin-jeu .button-container {
-    margin-top: 4rem;
+/* Fin de jeu */
+.container.fin-jeu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container.fin-jeu .title{
+    margin: 0 0 6rem;
 }
 
-.container.fin-jeu .button {
-    padding: 1rem 3.5rem;
-    margin: 1.5rem;
-}
 
 
 /* Media queries , Merci de laisser ceci à la fin du Css^^ */
