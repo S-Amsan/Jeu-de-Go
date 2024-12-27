@@ -75,7 +75,9 @@ const Jeu = () => {
         navigate("/FinJeu", {
             state: {
                 couleur: vainqueur,
-                nbJoueur: 2
+                nbJoueur: 2,
+                campJoueurSolo : campJoueurSolo
+
             }
         });
     }
