@@ -12,7 +12,7 @@ const FinJeu = () => {
             // Si 2 joueurs
             return (
                 <h1 className="title">
-                    Joueur {couleur.toUpperCase()}, vous avez gagné !
+                    Joueur {couleur.toUpperCase()},<br/>vous avez gagné !
                 </h1>
             );
         } else if (nbJoueur === 1) {
@@ -20,13 +20,13 @@ const FinJeu = () => {
             if (couleur === campJoueurSolo) {
                 return (
                     <h1 className="title">
-                        Félicitations ! Joueur {couleur.toUpperCase()}, vous avez gagné !
+                        Félicitations ! Joueur {couleur.toUpperCase()},<br/>vous avez gagné !
                     </h1>
                 );
             } else {
                 return (
                     <h1 className="title">
-                        Joueur {campJoueurSolo.toUpperCase()}, vous avez perdu.
+                        Joueur {campJoueurSolo.toUpperCase()},<br/>vous avez perdu.
                     </h1>
                 );
             }
