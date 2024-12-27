@@ -8,26 +8,27 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
+// La GUI à était crée sur le moteur GnuGO Ligne à changer si vous voulez utilisé un autre moteur de jeu
 // Lancer le processus GNU Go en mode GTP
 const gnugoProcess = spawn('../gnugo-3.8/gnugo.exe', ['--mode', 'gtp']);
 
 // Variables pour gérer les réponses et les commandes
 let commandQueue = [];
-let currentOutput = '';
-let isProcessing = false; // Indique si une commande est en cours de traitement
+let tamponCommande = '';
+let commandeEnCours = false; // Indique si une commande est en cours de traitement
 let compteur = 1;
 
-// Loguer toute la sortie de GNU Go
+// Loguer toute la sortie de GNU Go (car parfois coupé)
 gnugoProcess.stdout.on('data', (data) => {
-    currentOutput += data.toString(); // Accumuler les données dans le tampon
+    tamponCommande += data.toString(); // Accumuler les données dans le tampon
 
     // Vérifier si la réponse est complète (GNU Go finit chaque réponse par une ligne vide ou "\n")
-    if (currentOutput.includes('\n\n') || currentOutput.endsWith('\n\n')) {
+    if (tamponCommande.includes('\n\n') || tamponCommande.endsWith('\n\n')) {
         if (commandQueue.length > 0) {
             const { resolve } = commandQueue.shift();
-            resolve(currentOutput.trim());
-            currentOutput = ''; // Réinitialiser le tampon pour la prochaine commande
-            isProcessing = false; // Terminer le traitement de la commande actuelle
+            resolve(tamponCommande.trim());
+            tamponCommande = ''; // Réinitialiser le tampon pour la prochaine commande
+            commandeEnCours = false; // Terminer le traitement de la commande actuelle
             processNextCommand(); // Passer à la commande suivante
         }
     }
@@ -40,8 +41,8 @@ gnugoProcess.stderr.on('data', (data) => {
 
 // Fonction pour traiter la commande suivante dans la file
 function processNextCommand() {
-    if (isProcessing || commandQueue.length === 0) return; // Si déjà en cours ou file vide, on ne fait rien
-    isProcessing = true; // Marquer comme en cours de traitement
+    if (commandeEnCours || commandQueue.length === 0) return; // Si déjà en cours ou file vide, on ne fait rien
+    commandeEnCours = true; // Marquer comme en cours de traitement
     const { command, resolve, reject } = commandQueue[0];
     console.log(`Commande envoyée à GnuGo : ${command}`);
     gnugoProcess.stdin.write(`${command}\n`);
