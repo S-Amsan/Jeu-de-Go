@@ -16,7 +16,7 @@ Ce projet a pour but de développer une interface graphique (**GUI**) pour le je
 - Si un seul joueur, choix de la couleur des pierres
 - Choix de la taille du plateau de jeu
 - Fonctionnalité permettant de poser les pierres sur le plateau et donc de jouer une partie
-- Intégration du moteur de jeu **GOMOKU**, permettant de jouer contre une IA et de calculer le résultat d'une partie
+- Intégration du moteur de jeu **GNUGO**, permettant de jouer contre une IA et de calculer le résultat d'une partie
   
 ### Fonctionnalités non implémentées
 - Nous pensons avoir implémenté toutes les fonctionnalités nécessaires à la GUI.
