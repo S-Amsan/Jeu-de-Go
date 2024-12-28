@@ -13,21 +13,8 @@ const TitreNbJoueurs = ({nbJoueurs, couleur, campJoueurSolo, jeuEnCours}) => {
             return "Tour du Joueur "+couleurM;
         }
     };
-    // Animation (le texte s'écrit en temps réel ! )
-    const [nbCaracteres, SetNbCaracteres] = useState(1)
-    useEffect(() => {
-        SetNbCaracteres(1);
-        const interval = setInterval(() => {
-            SetNbCaracteres((prevState) => ++prevState) // On ajoute un caractere à affiché toutes les 50ms
-        },50)
 
-        return () => clearInterval(interval);
-    }, [couleur]);
-
-    const getAnimation = (titre) => {
-        return titre.slice(0,nbCaracteres);
-    }
-    const titre = getAnimation(getTitre());
+    const titre = getTitre()
 
     if (jeuEnCours) return <h1 className="title">{titre}</h1>;
     return <div data-aos="flip-left">

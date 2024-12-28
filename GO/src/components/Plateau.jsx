@@ -38,7 +38,7 @@ const Plateau = ({
             }
             verifPeutJouer().then(peutJouer => {
                 if (!peutJouer) { // On arrete le jeu si il ne peut pas jouer, car ça veut dire qu'il peut jouer que des coup illégaux
-                    finDeJeu();
+                    finDeJeu(false);
                 }
             })
             if (nbJoueurs === 1 && campJoueurSolo !== couleur) { // Si c'est le tour de gnugo
@@ -106,8 +106,12 @@ const Plateau = ({
     // On vérifie si le joueur actuel peut jouer :
     const verifPeutJouer = async () => {
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
-        return (await commande.allLegal(couleurEN) !== " ");
-    }
+        const reponse = await commande.allLegal(couleurEN);
+        // Vérifie si la réponse contient au moins une position correct
+        return /[A-Z]/.test(reponse) && /[0-9]/.test(reponse);
+    };
+
+
     // On vérifie si le coup joué est légal
     const verifCoupEstLegal = async (couleurEN, coordonnees) => {
         const coup = await commande.isLegal(couleurEN, coordonnees);

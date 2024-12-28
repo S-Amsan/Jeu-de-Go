@@ -55,17 +55,16 @@ const Jeu = () => {
             const newNbPass = nbPass + 1;
             setNbPass(newNbPass);
             if (newNbPass === 2) { // Le jeu se termine si les 2 joueur pass consécutivement leur tour
-                finDeJeu();
+                finDeJeu(true);
             }
         } else {
             setNbPass(0); // remet le compteur à 0
         }
     };
-    const finDeJeu = async () => {
+    const finDeJeu = async (finParPass) => { // La fonction est appelé que lors que une des conditions de fin est vérifié (les 2 joueurs pass consicutivement) ou un joueur ne peux plus joué
         SetJeuEnCours(false);
-        setHistorique((prevHistorique) => [...prevHistorique, "La partie est terminée"]);
+        setHistorique((prevHistorique) => [...prevHistorique, `La partie est terminée${finParPass? "Pass" : ""}${couleur}`]);
         const getVainqueur = await commande.finalScore();
-        console.log(getVainqueur);
         const vainqueur = getVainqueur.includes("B") ? "noir" : "blanc";
         const score = getVainqueur;
         handleFinJeu(vainqueur, score);
@@ -104,7 +103,7 @@ const Jeu = () => {
                     handleCoupJoue={handleCoupJoue}
                     historique={historique}
                     jeuEnCours={jeuEnCours}
-                    SetJeuEnCours={SetJeuEnCours}
+                    finDeJeu={finDeJeu}
                     handleFinJeu={handleFinJeu}
                 />
                 <PierresCapturees

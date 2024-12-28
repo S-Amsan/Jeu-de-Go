@@ -193,6 +193,7 @@ a {
 /* Historique */
 .container .historique {
     height: 10rem;
+    max-width: 20vw;
     overflow: auto;
     position: absolute;
     font-size: 1rem;
@@ -235,6 +236,7 @@ a {
 
 .container.test .title {
     margin: 0 0 2vh;
+    padding: 0;
     position: absolute;
     top: 7rem;
     left: 50%;
@@ -653,7 +655,7 @@ a {
     }
 
     .container.jeu .historique {
-        font-size: 2rem;
+        font-size: 1rem;
     }
 }
 
@@ -664,7 +666,19 @@ a {
     }
 
     .container.jeu .historique {
-        font-size: 2rem;
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 840px){
+    .container.jeu .pierresCapturees {
+        left: 60%;
+        bottom: -10%;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767px){
+    .container .historique {
+        max-width: 50vw;
     }
 }
 

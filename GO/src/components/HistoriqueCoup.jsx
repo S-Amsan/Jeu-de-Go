@@ -10,7 +10,9 @@ const HistoriqueCoup = ({historique, nbJoueurs, campJoueurSolo}) => {
     }, [historique]);
 
     const getDetail = (coup) => { //Permet d'afficher une phrase
-        if (coup.includes("illégal") || coup.includes("terminée")) return coup.replace(/(blanc|noir)$/, "");
+        if (coup.includes("illégal")){
+            return coup.replace(/(blanc|noir)$/, "");
+        }
         const ESPACE = " ";
         let auxiliaire = "a";
         let action = "joué";
@@ -24,6 +26,10 @@ const HistoriqueCoup = ({historique, nbJoueurs, campJoueurSolo}) => {
             quiJoue = "GnuGo";
             quelCouleur = "(" + quelCouleur + ")";
         }
+        if(coup.includes("terminée")){ // Si le jeu est fini
+            return <>{coup.includes("Pass")?"Les deux joueurs ont passé consécutivement leur tour!" : quiJoue+ ESPACE + quelCouleur + ESPACE + "n'"+auxiliaire+" plus de coup légal"}<br/> {coup.replace(/(blanc|noir|Pass)$/, "")} &#128483;!</>
+        }
+
         if (coup.includes("Pass")) {
             auxiliaire = "";
             action = "Pass";
