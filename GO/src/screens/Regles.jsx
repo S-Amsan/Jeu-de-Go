@@ -6,7 +6,7 @@ const Regles = () => {
             <BoutonMaison couleur={"blanc"}/>
             <h1 className="title-outside">Comment jouer ?</h1>
             <section className="commentJouer">
-                <ol>
+                <ul>
                     <li>
                         <strong>But du jeu :</strong> Contrôler le plus grand territoire sur le plateau en entourant des
                         intersections avec vos pierres
@@ -23,7 +23,7 @@ const Regles = () => {
                         <strong>Ko :</strong> Il est interdit de rejouer un coup qui recrée une situation identique sur
                         le plateau
                     </li>
-                </ol>
+                </ul>
                 <p>
                     Pour des règles complètes, cliquez sur ce lien :{' '}
                     <a href="https://jeudego.org/_php/regleGo.php" target="_blank" rel="noopener noreferrer">
@@ -31,6 +31,7 @@ const Regles = () => {
                     </a>.
                 </p>
             </section>
+
 
             <h1 className="title-outside">Présentation Site</h1>
             <section className="presenteSite">
