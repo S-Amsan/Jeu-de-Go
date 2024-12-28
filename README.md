@@ -10,6 +10,10 @@
 Ce projet a pour objectif de concevoir et de développer une interface graphique utilisateur (**GUI**) permettant de jouer au jeu de ***Go***.
 
 --- 
+### Configuration et lancement du projet
+Pour configurer et lancer le jeu, veuillez suivre les étapes détaillées dans notre tutoriel
+> [Voir le tutoriel](./docs/tutoriel.md)
+
 ### Fonctionnalités implémentées
 - Menu de jeu
 - Choix du nombre de joueurs humains souhaitant jouer une partie
