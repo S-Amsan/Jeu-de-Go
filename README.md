@@ -23,7 +23,7 @@ Ce projet a pour objectif de concevoir et de développer une interface graphique
 
 ### Diagrammes
 
->  [Diagramme d'architecture](./docs/diagramme_architecture.pdf)
+>  [Diagramme d'architecture](docs/Diagramme%20d'architecture%20Go.pdf)
 
 ### Tests unitaires
 Pas de tests unitaires, car réaliser des tests pour une interface utilisateur est une tâche complexe. Cependant, le code est optimisé et sans erreurs (des tests ont été réalisés manuellement).
