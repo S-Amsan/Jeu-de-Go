@@ -15,6 +15,13 @@ const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoup
                 <button className="button pass" onClick={handlePass}>Pass</button>
             </>
         )
+    }else{ // Pas obligé mais important pour l'animation
+        return (
+            <>
+                <button className="button abandon desactive" >Abandon</button>
+                <button className="button pass desactive" >Pass</button>
+            </>
+        )
     }
 }
 

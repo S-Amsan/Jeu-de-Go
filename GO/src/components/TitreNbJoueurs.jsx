@@ -1,17 +1,34 @@
+import {useEffect, useState} from "react";
+
 const TitreNbJoueurs = ({nbJoueurs, couleur, campJoueurSolo, jeuEnCours}) => {
     const getTitre = () => {
+        const couleurM = couleur.charAt(0).toUpperCase()+couleur.slice(1).toLowerCase()
         if (nbJoueurs === 1) {
             if (campJoueurSolo === couleur) {
-                return couleur === "noir" ? "Tour du Joueur Noir" : "Tour du Joueur Blanc";
+                return "C'est votre tour (" + couleurM +")";
             } else {
-                return "Tour de GnuGo";
+                return "Tour de GnuGo (" + couleurM + ")";
             }
         } else if (nbJoueurs === 2) {
-            return couleur === "blanc" ? "Tour du Joueur Blanc" : "Tour du Joueur Noir";
+            return "Tour du Joueur "+couleurM;
         }
     };
+    // Animation (le texte s'écrit en temps réel ! )
+    const [nbCaracteres, SetNbCaracteres] = useState(1)
+    useEffect(() => {
+        SetNbCaracteres(1);
+        const interval = setInterval(() => {
+            SetNbCaracteres((prevState) => ++prevState) // On ajoute un caractere à affiché toutes les 50ms
+        },50)
 
-    const titre = getTitre();
+        return () => clearInterval(interval);
+    }, [couleur]);
+
+    const getAnimation = (titre) => {
+        return titre.slice(0,nbCaracteres);
+    }
+    const titre = getAnimation(getTitre());
+
     if (jeuEnCours) return <h1 className="title">{titre}</h1>;
     return <div data-aos="flip-left">
         <h1 className="title">La partie est terminé !</h1>

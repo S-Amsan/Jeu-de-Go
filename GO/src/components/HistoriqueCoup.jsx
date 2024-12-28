@@ -1,6 +1,6 @@
 import {useRef, useEffect} from "react";
 
-const HistoriqueCoup = ({historique, nbJoueurs}) => {
+const HistoriqueCoup = ({historique, nbJoueurs, campJoueurSolo}) => {
     const historiqueRef = useRef(null);
 
     useEffect(() => { // La bar de scroll descend en meme temps que les coups
@@ -10,13 +10,13 @@ const HistoriqueCoup = ({historique, nbJoueurs}) => {
     }, [historique]);
 
     const getDetail = (coup) => { //Permet d'afficher une phrase
-        if (coup.includes("illégal") || coup.includes("terminée")) return coup;
+        if (coup.includes("illégal") || coup.includes("terminée")) return coup.replace(/(blanc|noir)$/, "");
         const ESPACE = " ";
         let auxiliaire = "a";
         let action = "joué";
         let quelCouleur = coup.includes("blanc") ? "Blanc" : "Noir";
         let quiJoue = "Le Joueur";
-        if (nbJoueurs === 1 && coup.includes("blanc")) {
+        if (nbJoueurs === 1 && coup.includes(campJoueurSolo)) {
             quiJoue = "Vous";
             quelCouleur = "(" + quelCouleur + ")";
             auxiliaire = "avez";
@@ -25,7 +25,7 @@ const HistoriqueCoup = ({historique, nbJoueurs}) => {
             quelCouleur = "(" + quelCouleur + ")";
         }
         if (coup.includes("Pass")) {
-            auxiliaire = ":";
+            auxiliaire = "";
             action = "Pass";
             coup = "";
         } else {

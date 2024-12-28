@@ -359,6 +359,12 @@ a {
     color: #444;
 }
 
+.commentJouer ul {
+    margin-left: 1vw;
+    padding-left: 1vw;
+    padding-bottom:10px;
+}
+
 .container.regles li {
     margin-bottom: 1vh;
     font-size: 1.1rem;
@@ -388,12 +394,6 @@ a {
 
 .premierPdePresentation {
     padding-bottom: 1vh;
-}
-
-.commentJouer ul {
-    margin-left: 1vw;
-    padding-left: 1vw;
-    padding-bottom:10px;
 }
 
 /* ChoixJoueurs */
@@ -555,7 +555,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: background 1s ease-in-out;
+    transition: background 1.5s, color 1s;
 }
 
 .container.jeu .title {
@@ -581,6 +581,10 @@ a {
     width: 11rem;
 }
 
+.container.jeu .button.desactive {
+    opacity: 0;
+}
+
 .container.jeu .jeuInfo {
     position: relative;
 }
@@ -592,6 +596,12 @@ a {
     bottom: 15%;
     text-align: left;
     width: 18vw;
+}
+.container.jeu .pierresCapturees .gras {
+    font-weight: 500;
+}
+.container.jeu .pierresCapturees .surbrillance {
+    color: #16BF49;
 }
 
 .container.jeu h2 {

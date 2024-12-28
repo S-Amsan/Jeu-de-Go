@@ -109,6 +109,7 @@ const Jeu = () => {
                 />
                 <PierresCapturees
                     pierresCapturees={pierresCapturees}
+                    campJoueurSolo={campJoueurSolo}
                 />
             </div>
             <BoutonEnJeu
@@ -124,6 +125,7 @@ const Jeu = () => {
             <HistoriqueCoup
                 historique={historique}
                 nbJoueurs={nbJoueurs}
+                campJoueurSolo={campJoueurSolo}
             />
 
         </div>);
