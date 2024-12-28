@@ -12,9 +12,10 @@ const Plateau = ({
                      handleCoupJoue,
                      historique,
                      jeuEnCours,
-                     finDeJeu
+                     finDeJeu,
+                     handleFinJeu
                  }) => {
-    //tableau de pierres (les classes)
+    //tableau de pierres, les classe de chaque pierre dans le plateau
     const [pierres, setPierres] = useState(
         Array.from({length: taille * taille}, () => "pierre")
     );
@@ -31,8 +32,7 @@ const Plateau = ({
     let gnugoGTPJoue = false;
     useEffect(() => { // à chaque fois que la couleur change
         if (estJouable) {
-            //console.log("tour du joueur : "+ couleur);
-            actualiserPlateau();
+            actualiserPlateau(); // On actualise le plateau (si jamais des pierres sont capturé faut les retiré)
             if (!jeuEnCours) {
                 return;
             }
@@ -49,21 +49,20 @@ const Plateau = ({
             }
         }
     }, [couleur]);
+    // Demander à gnugo de joué (genmove)
     const getGnuGoCoup = async () => {
-        if (gnugoGTPJoue)
-            return true;
+        if (gnugoGTPJoue) // si il est déjà entrain de joué
+            return;
         gnugoGTPJoue = true;
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
         const coup = (await commande.genMove(couleurEN));
         if (coup === "PASS") { // Si Gnugo Pass (pass son tour)
-            handleCoupJoue("GnuGo Pass");
+            handleCoupJoue("Pass");
             setCouleur(couleur === "noir" ? "blanc" : "noir");
             gnugoGTPJoue = false
             return;
-        } else if (coup === "resign") {
-            handleCoupJoue("GnuGo resign");
-            setCouleur(couleur === "noir" ? "blanc" : "noir");
-            gnugoGTPJoue = false
+        } else if (coup === "resign") { // Si il abandonne
+            handleFinJeu(couleur === 'noir' ? 'blanc' : 'noir')
             return;
         }
         const index = coordonnees.indexOf(coup.toString());
@@ -71,7 +70,7 @@ const Plateau = ({
         gnugoGTPJoue = false;
     }
     // Gestion de pierres et du plateau
-    const poserPierre = (index, couleurPierre) => {
+    const poserPierre = (index, couleurPierre) => { //Posé une pierre sur le plateau (On change sa classe, ce qui nous permet de le rendre visible grace au css)
         setPierres((prevPierres) =>
             prevPierres.map((etatPierre, i) =>
                 i === index ? `pierre pose ${couleurPierre}` : etatPierre
@@ -85,7 +84,7 @@ const Plateau = ({
             )
         );
     }
-    const actualiserPlateau = async () => {
+    const actualiserPlateau = async () => { //On actualise le plateau pour avoir le meme que gnugo
         const pierresNoir = (await commande.listStones("black")).split(" ");
         const pierresBlanc = (await commande.listStones("white")).split(" ");
         const pierresPoseIndex = [];
@@ -99,7 +98,7 @@ const Plateau = ({
             poserPierre(index, "blanc");
             pierresPoseIndex.push(index);
         }
-        for (let i = 0; i < taille * taille; ++i) {
+        for (let i = 0; i < taille * taille; ++i) { //On retire les pierres qui on était posé puis enlevé par gnugo ( capturé )
             if (pierresPoseIndex.indexOf(i) === -1)
                 retirerPierre(i);
         }
@@ -120,9 +119,8 @@ const Plateau = ({
             return;
         }
         const pierreClique = pierres[index];
-        const coupJoue = coordonnees[index].toString();
         const couleurEN = (couleur === "noir" ? "black" : "white"); // traduction en anglais pour gnugo
-        let coup;
+        let coupJoue = coordonnees[index].toString();
 
         if (pierreClique.includes("pose") || (joueurACliquer && (nbJoueurs === 1 && campJoueurSolo !== couleur))) { // Ne peut pas jouer sur une pierre pose ou quand c'est le tour de Gnugo
             return;
@@ -150,28 +148,18 @@ const Plateau = ({
             poserPierre(index, couleur);
             // On change le tour
             setCouleur(couleur === "noir" ? "blanc" : "noir");
-            // text selon qui a joué (Pour l'historique des coups):
-            let quiAJoue = "Le Joueur ";
-            let quelleCouleurAJoue = "";
-            if (nbJoueurs === 1 && campJoueurSolo !== couleur) {
-                quiAJoue = "GnuGo ";
-            } else if (nbJoueurs === 2) {
-                quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
-            } else {
-                quelleCouleurAJoue = (couleur === "noir" ? "Noir" : "Blanc");
-                quelleCouleurAJoue = "(" + quelleCouleurAJoue + ")";
-            }
-            coup = quiAJoue + quelleCouleurAJoue + " a joué " + coupJoue;
+
+
             //On actualise la ligne et la colonne (des numérotations)
             let colonneIndex = Number(coupJoue.charAt(0).charCodeAt(0) - 64);
             let ligneIndex = (taille + 1) - Number(coupJoue.slice(1));
             setIndexCoupColonne(colonneIndex > 8 ? colonneIndex - 1 : colonneIndex);
             setIndexCoupLigne(ligneIndex);
         } else {
-            coup = "Coup illégal !"
+            coupJoue = "Coup illégal !"
         }
 
-        handleCoupJoue(coup);
+        handleCoupJoue(coupJoue);
     };
     // Pour que les afficher les numéro (numérotation) en gras
     const [indexCoupColonne, setIndexCoupColonne] = useState();
@@ -194,6 +182,8 @@ const Plateau = ({
         }
         return false
     }
+
+    // Le Plateau (svg) et les pierres (a la fin)
     return (
         <div className="plateau-container">
             <svg className="quadrillage" viewBox="0 0 100 100" preserveAspectRatio="none">

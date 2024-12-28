@@ -4,12 +4,7 @@ const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoup
         handleFinJeu(couleur === 'noir' ? 'blanc' : 'noir')
     };
     const handlePass = () => {
-        let couleurJoueur = couleur === 'noir' ? 'Noir' : 'Blanc';
-        if (nbJoueurs === 1) {
-            couleurJoueur = "(" + couleurJoueur + ")";
-        }
-        const coup = "Le Joueur " + couleurJoueur + " Pass";
-        handleCoupJoue(coup)
+        handleCoupJoue("Pass")
         setCouleur(couleur === "noir" ? "blanc" : "noir");
     }
 

@@ -12,7 +12,7 @@ const Jeu = () => {
     const location = useLocation();
     const taille = (location.state?.tailleSelect || 19); // Taille du plateau
     const nbJoueurs = location.state?.nbJoueurs || 1; // Le nombre de vrai joueur ( 1 ou 2 )
-    const [campJoueurSolo] = useState(location.state?.campJoueurSolo);// la couleur choisie ,si il n'y a qu'un seul vrai joueur
+    const [campJoueurSolo] = useState(location.state?.campJoueurSolo);// la couleur choisie ,si il n'y a qu'un seul joueur humain ( ce qui nous permet de savoir de quel couleur est gnugo)
     // On récupere les données (si l'utilisateur actualise la page)
     const [couleur, setCouleur] = useState(() => {
         const sauvegardeCouleur = localStorage.getItem("couleur");
@@ -49,7 +49,7 @@ const Jeu = () => {
 
 
     const handleCoupJoue = (coup) => { // On ajoute le coup dans l'historique et on regarde si les joueurs pass
-        setHistorique((prevHistorique) => [...prevHistorique, coup]);
+        setHistorique((prevHistorique) => [...prevHistorique, coup+couleur]);
         const coupString = coup.toString();
         if (coupString.includes("Pass")) {
             const newNbPass = nbPass + 1;
@@ -67,22 +67,18 @@ const Jeu = () => {
         const getVainqueur = await commande.finalScore();
         console.log(getVainqueur);
         const vainqueur = getVainqueur.includes("B") ? "noir" : "blanc";
-        const score = getVainqueur.slice(2); // A afficher sur l'ecran de fin!!!!!!!!!!!!!
-        handleFinJeu(vainqueur);
+        const score = getVainqueur;
+        handleFinJeu(vainqueur, score);
     };
 
-    const handleFinJeu = (vainqueur) => {
+    const handleFinJeu = (vainqueur, score) => {
         navigate("/FinJeu", {
             state: {
-                couleur: vainqueur,
-                nbJoueur: 2,
-                campJoueurSolo : campJoueurSolo
-
+                couleur: vainqueur, nbJoueurs: nbJoueurs, campJoueurSolo: campJoueurSolo, score: score
             }
         });
     }
-    return (
-        <div className={`container jeu ${couleur}`}>
+    return (<div className={`container jeu ${couleur}`}>
             <Curseur
                 taille={taille}
                 couleur={couleur}
@@ -109,6 +105,7 @@ const Jeu = () => {
                     historique={historique}
                     jeuEnCours={jeuEnCours}
                     SetJeuEnCours={SetJeuEnCours}
+                    handleFinJeu={handleFinJeu}
                 />
                 <PierresCapturees
                     pierresCapturees={pierresCapturees}
@@ -124,10 +121,12 @@ const Jeu = () => {
                 jeuEnCours={jeuEnCours}
                 finDeJeu={finDeJeu}
             />
-            <HistoriqueCoup historique={historique}/>
+            <HistoriqueCoup
+                historique={historique}
+                nbJoueurs={nbJoueurs}
+            />
 
-        </div>
-    );
+        </div>);
 };
 
 export default Jeu;

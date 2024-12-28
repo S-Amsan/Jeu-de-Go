@@ -25,7 +25,7 @@ body {
 }
 
 .title {
-    padding: 25vh 0 0;
+    padding: 30vh 0 0;
     font-style: italic;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -299,10 +299,28 @@ a {
 }
 
 .container.menu .credit {
-    position: absolute;
-    bottom: 4vh;
     justify-content: center;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.container.menu .credit-container {
+    display: flex;
+    position: absolute;
+    bottom: 4vh;
+    flex-direction: column;
+}
+
+.container.menu .credit a {
+    padding: 0 0 0 0.25rem;
+}
+
+.container.menu .credit .Logo {
+    margin: 3px;
+    fill: #007bff;
 }
 
 /* Règles */
@@ -373,15 +391,49 @@ a {
 }
 
 /* ChoixJoueurs */
+.container.choixJoueurs h2 {
+    margin: 3vh 0 9vh 0;
+    font-size: 2.5rem;
+    padding: 0;
+    font-weight: 600;
+    line-height: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container.choixJoueurs .description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #888;
+}
+
 .container.choixJoueurs .button-container {
     display: flex;
     flex-direction: row;
     gap: 2vw;
-    margin: 3rem 0 0;
+    margin: 8rem 0 0;
     text-align: center;
     align-items: center;
     justify-content: center;
+    position : relative;
 }
+.container.choixJoueurs .info-choix {
+    position: absolute;
+    visibility: hidden;
+    left: 50%;
+    top: 5rem;
+    transform: translateX(-50%);
+    color: #1E1E1E;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    font-size: 1.2rem;
+}
+.container.choixJoueurs .button:hover .info-choix{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 
 /* ChoixCamp */
 .container.choixCamp h2 {
@@ -533,7 +585,7 @@ a {
     left: 100%;
     bottom: 15%;
     text-align: left;
-    width: 20rem;
+    width: 18vw;
 }
 
 .container.jeu h2 {
@@ -570,8 +622,10 @@ a {
     flex-direction: column;
     align-items: center;
 }
-.container.fin-jeu .title{
+
+.container.fin-jeu h2 {
     margin: 0 0 6rem;
+    padding: 0;
 }
 
 /* Media queries , Merci de laisser ceci à la fin du Css^^ */

@@ -4,18 +4,19 @@ const FinJeu = () => {
 
     const location = useLocation();
     const {couleur} = location.state; // la couleur du vainqueur
-    const {nbJoueur} = location.state; // Le nombre de vrai joueur
+    const {nbJoueurs} = location.state; // Le nombre de vrai joueur
     const {campJoueurSolo} = location.state; // Couleur du joueur (si il est solo)
+    const {score} = location.state;
 
     const MessageVictoire = () => {
-        if (nbJoueur === 2) {
+        if (nbJoueurs === 2) {
             // Si 2 joueurs
             return (
                 <h1 className="title">
                     Joueur {couleur.toUpperCase()},<br/>vous avez gagné !
                 </h1>
             );
-        } else if (nbJoueur === 1) {
+        } else if (nbJoueurs === 1) {
             // Si 1 joueur
             if (couleur === campJoueurSolo) {
                 return (
@@ -32,10 +33,20 @@ const FinJeu = () => {
             }
         }
     };
+    const Score = () => {
+        if (score){
+            return <h2>Score : {score.includes("B") ? score.replace("B", "Noir") : score.replace("W", "Blanc")}</h2>
+        }else if(nbJoueurs === 2 || couleur === campJoueurSolo) {
+            return <h2>Victoire par abandon</h2>
+        }else{
+            return <h2>Vous avez abandonné</h2>
+        }
+    }
 
     return (
-        <div className={`container fin-jeu ${nbJoueur === 2 ? couleur : campJoueurSolo}`}>
+        <div className={`container fin-jeu ${nbJoueurs === 2 ? couleur : campJoueurSolo}`}>
             <MessageVictoire/>
+            <Score/>
             <Link className="button" to="/NbJoueurs">Rejouer</Link>
             <Link className="button" to="/">Quitter</Link>
         </div>
