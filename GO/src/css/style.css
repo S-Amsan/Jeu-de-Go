@@ -364,7 +364,7 @@ a {
 .commentJouer ul {
     margin-left: 1vw;
     padding-left: 1vw;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
 .container.regles li {
@@ -422,8 +422,9 @@ a {
     text-align: center;
     align-items: center;
     justify-content: center;
-    position : relative;
+    position: relative;
 }
+
 .container.choixJoueurs .info-choix {
     position: absolute;
     visibility: hidden;
@@ -436,7 +437,8 @@ a {
     transition: opacity 0.3s ease, visibility 0s linear 0.3s;
     font-size: 1.2rem;
 }
-.container.choixJoueurs .button:hover .info-choix{
+
+.container.choixJoueurs .button:hover .info-choix {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -562,7 +564,7 @@ a {
 
 .container.jeu .title {
     padding: 0;
-    margin: 1vh;
+    margin: 10px 0 0 0;
     font-size: 4rem;
     font-weight: 600;
 }
@@ -587,6 +589,116 @@ a {
     opacity: 0;
 }
 
+/* Le popup de confirmation d'abandon */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.container.jeu.noir .popUpConfirmation {
+    background: #1E1E1E;
+    color: #E1E1E1;
+}
+
+.container.jeu .popUpConfirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: #E1E1E1;
+    color: #1E1E1E;
+    padding: 2rem;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    width: 30rem;
+    height: 8rem;
+    opacity: 0.97;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    animation: animationApparition 0.7s ease-out;
+}
+
+.container.jeu .popUpConfirmation p {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.container.jeu.noir .popUpConfirmation button {
+    color: #1E1E1E;
+}
+
+.container.jeu .popUpConfirmation button {
+    color: #1E1E1E;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    font-size: 0.4em;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 700;
+    transition: background 0.5s ease, transform 0.3s ease;
+}
+
+.container.jeu .popUpConfirmation button:hover {
+    background-position: left;
+    transform: scale(1.1);
+}
+
+.container.jeu.noir .popUpConfirmation #annuler {
+    border: 2px solid #E1E1E1;
+    color: #E1E1E1;
+}
+
+.container.jeu .popUpConfirmation #annuler {
+    background: none;
+    border: 2px solid #1E1E1E;
+    margin-right: 0.5em;
+}
+
+.container.jeu.noir .popUpConfirmation #confirmer {
+    color: #E1E1E1;
+}
+
+.container.jeu .popUpConfirmation #confirmer {
+    background: linear-gradient(to left, #FF6B6B, #FF4D4D);
+    border: none;
+    margin-left: 0.5em;
+    color: #1E1E1E;
+}
+
+.container.jeu .popUpConfirmation .actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Animation lorsque le popup apparait */
+
+@keyframes animationApparition {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Fin, Le popup de confirmation d'abandon */
+
+
 .container.jeu .jeuInfo {
     position: relative;
 }
@@ -599,9 +711,11 @@ a {
     text-align: left;
     width: 18vw;
 }
+
 .container.jeu .pierresCapturees .gras {
     font-weight: 500;
 }
+
 .container.jeu .pierresCapturees .surbrillance {
     color: #16BF49;
 }
@@ -669,14 +783,16 @@ a {
         font-size: 1.2rem;
     }
 }
-@media screen and (max-width: 840px){
+
+@media screen and (max-width: 840px) {
     .container.jeu .pierresCapturees {
         left: 60%;
         bottom: -10%;
         width: 100%;
     }
 }
-@media screen and (max-width: 767px){
+
+@media screen and (max-width: 767px) {
     .container .historique {
         max-width: 50vw;
     }

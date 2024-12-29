@@ -1,28 +1,47 @@
-const BoutonEnJeu = ({nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue, handleFinJeu, jeuEnCours}) => {
+import { useState } from "react";
+
+const BoutonEnJeu = ({ nbJoueurs, couleur, setCouleur, campJoueurSolo, handleCoupJoue, handleFinJeu, jeuEnCours }) => {
+    const [popUpVisible, setPopUpVisible] = useState(false);
 
     const handleAbandon = () => {
-        handleFinJeu(couleur === 'noir' ? 'blanc' : 'noir')
+        handleFinJeu(couleur === 'noir' ? 'blanc' : 'noir');
+        setPopUpVisible(false);
     };
+
     const handlePass = () => {
-        handleCoupJoue("Pass")
+        handleCoupJoue("Pass");
         setCouleur(couleur === "noir" ? "blanc" : "noir");
-    }
+    };
 
     if ((nbJoueurs === 2 || (nbJoueurs === 1 && couleur === campJoueurSolo)) && jeuEnCours) { // On affiche pas les boutons quand c'est GnuGO qui joue
         return (
             <>
-                <button className="button abandon" onClick={handleAbandon}>Abandon</button>
+                {popUpVisible && (
+                    <>
+                        <div className="overlay" onClick={(e) => e.stopPropagation()}></div> {/*Oblige le joueur à faire un choix, il ne peut que annuler ou abandonner*/}
+                        <div className="popUpConfirmation">
+                            <div className="contenu">
+                                <p>Êtes-vous sûr de vouloir abandonner ?</p>
+                            </div>
+                            <div className="actions">
+                                <button id="annuler" onClick={() => setPopUpVisible(false)}>Annuler</button>
+                                <button id="confirmer" onClick={handleAbandon}>Confirmer</button>
+                            </div>
+                        </div>
+                    </>
+                )}
+                <button className="button abandon" onClick={() => setPopUpVisible(true)}>Abandon</button>
                 <button className="button pass" onClick={handlePass}>Pass</button>
             </>
-        )
-    }else{ // Pas obligé mais important pour l'animation
+        );
+    } else {
         return (
             <>
-                <button className="button abandon desactive" >Abandon</button>
-                <button className="button pass desactive" >Pass</button>
+                <button className="button abandon desactive">Abandon</button>
+                <button className="button pass desactive">Pass</button>
             </>
-        )
+        );
     }
-}
+};
 
-export default BoutonEnJeu
+export default BoutonEnJeu;
