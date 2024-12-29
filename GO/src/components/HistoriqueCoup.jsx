@@ -27,7 +27,7 @@ const HistoriqueCoup = ({historique, nbJoueurs, campJoueurSolo}) => {
             quelCouleur = "(" + quelCouleur + ")";
         }
         if(coup.includes("terminée")){ // Si le jeu est fini
-            return <>{coup.includes("Pass")?"Les deux joueurs ont passé consécutivement leur tour!" : quiJoue+ ESPACE + quelCouleur + ESPACE + "n'"+auxiliaire+" plus de coup légal"}<br/> {coup.replace(/(blanc|noir|Pass)$/, "")} &#128483;!</>
+            return <>{coup.includes("Pass")?"Les deux joueurs ont passé consécutivement leur tour!" : quiJoue+ ESPACE + quelCouleur + ESPACE + "n'"+auxiliaire+" plus de coup légal"}<br/> {coup.replace(/(blanc|noir)$/, "").replace(/(Pass)$/, "")} &#128483;!</>
         }
 
         if (coup.includes("Pass")) {
