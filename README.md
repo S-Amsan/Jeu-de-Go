@@ -1,5 +1,17 @@
 # Projet R3.04 : Développement d'une GUI pour le jeu de Go
 
+# NOTE 17
+
+# CORRECTION
+Tres bon tutoriel. J'ai pu installer sans problème (il ne faut pas utiliser powershell mais bien cmd en effet) et faire le début d'une partie.
+
+Votre GUI marche bien même si au niveau de le gestion de la taille du goban par rapport à celui de la fenêtre ce n'est pas top. j'ai zoomé mais du coup les pierre sont énormes. Certains widgets ont une taille pas bien adaptée à celle de la fenêtre mais globamement on peu jouer sans problème.
+
+Le diagramme d'architecture est un diragramme de classe en fait ce qui n'est pas ce qui était demandé. Du coup il n'est pas très clair.
+
+Même pour une GUI on peut faire des tests : on teste les données suite à des actions par exemple. Il aurait au moins fallu essayer !
+
+
 ### Membres de l'équipe
 - Duquenne 207
 - Meri 207
