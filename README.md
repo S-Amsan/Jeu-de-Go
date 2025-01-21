@@ -5,7 +5,7 @@
 # CORRECTION
 Tres bon tutoriel. J'ai pu installer sans problème (il ne faut pas utiliser powershell mais bien cmd en effet) et faire le début d'une partie.
 
-Votre GUI marche bien même si au niveau de le gestion de la taille du goban par rapport à celui de la fenêtre ce n'est pas top. j'ai zoomé mais du coup les pierre sont énormes. Certains widgets ont une taille pas bien adaptée à celle de la fenêtre mais globamement on peu jouer sans problème.
+Votre GUI marche bien même si au niveau de la gestion de la taille du goban par rapport à celui de la fenêtre ce n'est pas top. j'ai zoomé mais du coup les pierres sont énormes. Certains widgets ont une taille pas bien adaptée à celle de la fenêtre mais globalement on peu jouer sans problème.
 
 Le diagramme d'architecture est un diragramme de classe en fait ce qui n'est pas ce qui était demandé. Du coup il n'est pas très clair.
 
